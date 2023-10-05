@@ -119,5 +119,6 @@ angle_max = 720.0
 wait_time = 2.0
 one_shot = true
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="timeout" from="reloading" to="." method="_on_reloading_timeout"]
 [connection signal="timeout" from="emiting" to="." method="_on_emiting_timeout"]

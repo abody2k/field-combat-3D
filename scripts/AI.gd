@@ -17,11 +17,16 @@ func lookForEnemies():
 
 func freezeMe():
 	print("I'M SO FREEZED !")
+	($enemeyDetector as Area3D).monitoring=false
+	($solidoundary as CollisionShape3D).disabled=true
 	state=DISABLED
-	process_mode=Node.PROCESS_MODE_DISABLED
+#	process_mode=Node.PROCESS_MODE_DISABLED
 	
 func unFreezeMe():
 	state=SEARCHING
+	($enemeyDetector as Area3D).monitoring=true
+	($solidoundary as CollisionShape3D).disabled=false
+#	process_mode = PROCESS_MODE_PAUSABLE
 	
 
 func ObjectEnteredDetectionRange(body):

@@ -18,6 +18,8 @@ func onSearching():
 			$shootingTimer.start()	
 			state=SHOOTING
 		else :
+			if path.size()<1 :
+				return
 #			if target.name=="j":
 			#print("please note that im the bot",( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized())
 			velocity =( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized() * speed

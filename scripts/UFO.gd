@@ -6,7 +6,8 @@ extends CharacterBody3D
 var readyToAttack=true
 var state=IDLE
 enum {IDLE,ABSROBING}
-
+var absorbObj : CharacterBody3D
+var absorbOnjPos = Vector3.ZERO
 var rocket = preload("res://rocket.tscn")
 var velo = Vector3.ZERO
 
@@ -49,6 +50,14 @@ func absorbing():
 				print(collidedObj)
 				if collidedObj.name.find("En") >=0:
 					collidedObj.freezeMe()
+					absorbObj=collidedObj
+					print("did set location an object",absorbObj,absorbObj.position)
+					absorbOnjPos = absorbObj.position
+					var x = create_tween()
+					x.tween_property(absorbObj,"position",position,1)
+#					x.tween_property(absorbObj,"position",position - Vector3(0,2,0),1)
+					x.tween_callback(func (): print("Done"))
+					x.play()
 			#if not animate absorbing for only 1 second
 			pass
 		
@@ -59,7 +68,23 @@ func absorbing():
 		#then they are destroyed
 		
 		
-
+#func suckingObject(delta):
+#	print("Checking something here",absorbObj)
+#	if absorbObj != null and !is_instance_valid(absorbObj):
+#		return
+#	if absorbObj == null:
+#		return
+#
+#	print("bringing it")
+#	var x =Tween.new()
+#
+#	absorbObj.position = lerp(absorbOnjPos,position,)
+#	if absorbObj.position.distance_squared_to(position) <= 0.05:
+#		absorbObj.queue_free()
+#		absorbObj=null
+		
+		
+	
 func _physics_process(delta):
 	match state:
 		IDLE:
@@ -67,6 +92,7 @@ func _physics_process(delta):
 			attacking()
 			absorbing()
 		ABSROBING:
+#			suckingObject(delta)
 			pass
 	
 
@@ -83,4 +109,14 @@ func _on_emiting_timeout():
 	$rings.emitting=false
 	$rings2.emitting=false
 	state=IDLE
+	pass # Replace with function body.
+
+#UFO died
+func _on_tree_exiting():
+	#set the unit back to its position and unfreeze it
+	if is_instance_valid(absorbObj):
+		absorbObj.position= absorbOnjPos
+		absorbObj.unFreezeMe()
+	
+	
 	pass # Replace with function body.
