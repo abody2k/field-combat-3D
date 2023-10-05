@@ -56,7 +56,7 @@ func absorbing():
 					var x = create_tween()
 					x.tween_property(absorbObj,"position",position,1)
 #					x.tween_property(absorbObj,"position",position - Vector3(0,2,0),1)
-					x.tween_callback(func (): print("Done"))
+					x.tween_callback(fromGroundToUFO)
 					x.play()
 			#if not animate absorbing for only 1 second
 			pass
@@ -68,6 +68,11 @@ func absorbing():
 		#then they are destroyed
 		
 		
+func fromGroundToUFO():
+	var x = create_tween()
+	x.tween_property(absorbObj,"position",position,0.5)
+	x.tween_callback(func(): absorbObj.queue_free())
+	pass
 #func suckingObject(delta):
 #	print("Checking something here",absorbObj)
 #	if absorbObj != null and !is_instance_valid(absorbObj):
