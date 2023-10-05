@@ -32,8 +32,11 @@ func movement():
 	move_and_slide()
 	
 func absorbing():
-	if Input.is_action_just_pressed("absorb"):
+	if Input.is_action_just_pressed("absorb") and state != ABSROBING:
+		$emiting.start()
 		state=ABSROBING
+		$rings.emitting=true
+		$rings2.emitting=true		
 		#make rings
 		#check if there is at least one object or more at that place
 		#if there is then check if they are the enemy then freeze them
@@ -50,8 +53,9 @@ func _physics_process(delta):
 		IDLE:
 			movement()
 			attacking()
-		ABSROBING:
 			absorbing()
+		ABSROBING:
+			pass
 	
 
 	
@@ -60,4 +64,11 @@ func _physics_process(delta):
 
 func _on_reloading_timeout():
 	readyToAttack=true
+	pass # Replace with function body.
+
+
+func _on_emiting_timeout():
+	$rings.emitting=false
+	$rings2.emitting=false
+	state=IDLE
 	pass # Replace with function body.

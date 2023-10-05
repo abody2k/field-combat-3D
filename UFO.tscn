@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1ega158uiio7"]
+[gd_scene load_steps=11 format=3 uid="uid://b1ega158uiio7"]
 
 [ext_resource type="Script" path="res://UFO.gd" id="1_828k6"]
 
@@ -53,6 +53,18 @@ _data = {
 "rotation": SubResource("Animation_syyxf")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bvut"]
+albedo_color = Color(100, 0, 0.18, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_5lo4w"]
+material = SubResource("StandardMaterial3D_7bvut")
+inner_radius = 1.127
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80087"]
+albedo_color = Color(0.22, 0.42, 100, 1)
+metallic = 0.02
+metallic_specular = 1.0
+
 [node name="UFO" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0, 0)
 script = ExtResource("1_828k6")
@@ -78,4 +90,32 @@ target_position = Vector3(-6.50675, -1.61441, 3.17618)
 [node name="reloading" type="Timer" parent="."]
 one_shot = true
 
+[node name="rings" type="CPUParticles3D" parent="."]
+transform = Transform3D(-0.25, 0.937422, 0.242362, 0.0669873, 0.266456, -0.961516, -0.965926, -0.224144, -0.129409, -0.996959, 0, -1.50537e-07)
+visibility_range_fade_mode = 1
+emitting = false
+amount = 20
+mesh = SubResource("TorusMesh_5lo4w")
+emission_colors = PackedColorArray(100, 0.01, 0.35, 1)
+gravity = Vector3(41, -5, -21)
+linear_accel_max = 100.0
+angle_max = 720.0
+
+[node name="rings2" type="CPUParticles3D" parent="."]
+transform = Transform3D(-0.25, 0.937422, 0.242362, 0.0669873, 0.266456, -0.961516, -0.965926, -0.224144, -0.129409, -0.791768, 0, -1.19554e-07)
+material_override = SubResource("StandardMaterial3D_80087")
+visibility_range_fade_mode = 1
+emitting = false
+amount = 20
+mesh = SubResource("TorusMesh_5lo4w")
+emission_colors = PackedColorArray(100, 0.01, 0.35, 1)
+gravity = Vector3(41, -5, -21)
+linear_accel_max = 100.0
+angle_max = 720.0
+
+[node name="emiting" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="reloading" to="." method="_on_reloading_timeout"]
+[connection signal="timeout" from="emiting" to="." method="_on_emiting_timeout"]
