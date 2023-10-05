@@ -9,11 +9,11 @@ var grid = AStarGrid2D.new()
 
 
 func getPositionListGivenPosition(start: Vector2, end :Vector2):
-	print(position)
+#	print(position)
 
 	var tempStart = Vector2i(ceil((start.x-position.x)/gridRectSize.x),ceil((start.y-position.y)/gridRectSize.y))
 	var tempEnd = Vector2i(ceil((end.x-position.x)/gridRectSize.x),ceil((end.y-position.y)/gridRectSize.y))
-	print(tempStart,tempEnd)
+#	print(tempStart,tempEnd)
 	return grid.get_point_path(tempStart,tempEnd)
 	
 	

@@ -27,7 +27,7 @@ func movement():
 	
 	velo.x=-Input.get_axis("moveUP","moveDOWN")
 	velo.z=Input.get_axis("moveLEFT","moveRIGHT")
-	print(velo)
+
 	velocity = velo * speed 
 	move_and_slide()
 	
@@ -35,12 +35,24 @@ func absorbing():
 	if Input.is_action_just_pressed("absorb") and state != ABSROBING:
 		$emiting.start()
 		state=ABSROBING
+		#make rings
 		$rings.emitting=true
 		$rings2.emitting=true		
-		#make rings
+		
 		#check if there is at least one object or more at that place
-		#if there is then check if they are the enemy then freeze them
-		#if not animate absorbing for only 1 second
+		if $checker.is_colliding():
+			print("COLLIDING")
+			var collidedObj=$checker.get_collider()
+			#if there is then check if they are the enemy then freeze them
+			print(collidedObj.name)
+			if collidedObj is CharacterBody3D:
+				print(collidedObj)
+				if collidedObj.name.find("En") >=0:
+					collidedObj.freezeMe()
+			#if not animate absorbing for only 1 second
+			pass
+		
+		
 		#after freezing them disable their physics
 		#move them towards the UFO
 		#when they are undreneath it they will be abosrbed up in one second

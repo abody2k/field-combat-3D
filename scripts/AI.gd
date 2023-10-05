@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var forwardDirection : Vector3
 @export var speed : float = 10.0
 @export var shootingRange : float = 20.0
-enum  {SEARCHING, SHOOTING}
+enum  {SEARCHING, SHOOTING,DISABLED}
 var path : PackedVector2Array
 var state = 0
 
@@ -15,8 +15,18 @@ func lookForEnemies():
 	move_and_slide()
 	pass
 
+func freezeMe():
+	print("I'M SO FREEZED !")
+	state=DISABLED
+	process_mode=Node.PROCESS_MODE_DISABLED
+	
+func unFreezeMe():
+	state=SEARCHING
+	
 
 func ObjectEnteredDetectionRange(body):
+	if state == DISABLED:
+		return
 	# Detect if the object is a real thing or not 
 	if !((body) is CharacterBody3D) and !(body is Node3D ):
 		return

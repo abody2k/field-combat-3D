@@ -68,6 +68,8 @@ func _physics_process(delta):
 
 	match state:
 		
+		DISABLED:
+			pass
 #		SHOOTING:
 #		#WRITE SHOOTING SCRIPT
 #			onShooting()
@@ -107,7 +109,7 @@ func _on_shooting_timer_timeout():
 		myRocket.target = target.position
 		
 		get_parent().add_child(myRocket)
-		print(target)
+#		print(target)
 		(myRocket as CharacterBody3D).look_at(target.position)
 		
 		pass

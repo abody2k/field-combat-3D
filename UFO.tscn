@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b1ega158uiio7"]
 
-[ext_resource type="Script" path="res://UFO.gd" id="1_828k6"]
+[ext_resource type="Script" path="res://scripts/UFO.gd" id="1_gyoq5"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_ndqnn"]
 
@@ -67,7 +67,7 @@ metallic_specular = 1.0
 
 [node name="UFO" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0, 0)
-script = ExtResource("1_828k6")
+script = ExtResource("1_gyoq5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PrismMesh_ndqnn")
@@ -84,8 +84,10 @@ libraries = {
 "": SubResource("AnimationLibrary_le5wm")
 }
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="checker" type="RayCast3D" parent="."]
 target_position = Vector3(-6.50675, -1.61441, 3.17618)
+debug_shape_custom_color = Color(0.94328, 0.0730168, 0.04537, 1)
+debug_shape_thickness = 5
 
 [node name="reloading" type="Timer" parent="."]
 one_shot = true

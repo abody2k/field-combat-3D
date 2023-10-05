@@ -28,10 +28,10 @@ shootingRange = 5.0
 transform = Transform3D(-0.0366439, 0.469156, -0.882355, 0, 0.882948, 0.469472, 0.999328, 0.0172033, -0.0323546, 0, 7, 0)
 
 [node name="Enj" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 0)
 
 [node name="j" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 0)
 
 [node name="Solider_En" parent="." instance=ExtResource("2_nib8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 0, 0)
@@ -39,7 +39,7 @@ speed = 5.0
 shootingRange = 5.0
 
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 7, 3, 0)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 7, 2, 0)
 speed = 5.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

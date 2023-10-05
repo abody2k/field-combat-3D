@@ -27,5 +27,5 @@ func _physics_process(delta):
 			queue_free()
 			
 	elif result != null:
-		print(result)
+#		print(result)
 		queue_free()
