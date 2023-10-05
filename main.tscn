@@ -39,7 +39,7 @@ speed = 5.0
 shootingRange = 5.0
 
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 7, 3, 0)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 7, 3, 0)
 speed = 5.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
