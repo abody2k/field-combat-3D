@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtuyypt0e3o3w"]
+
+[ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
+[ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://solider.tscn" id="2_nib8e"]
+[ext_resource type="PackedScene" uid="uid://b1ega158uiio7" path="res://UFO.tscn" id="3_nga5r"]
+
+[sub_resource type="Environment" id="Environment_u4r58"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 7.15
+glow_strength = 2.0
+glow_bloom = 1.0
+glow_blend_mode = 4
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_qlexn")
+gridWidth = 100
+gridHeight = 100
+
+[node name="Solider" parent="." instance=ExtResource("2_nib8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+speed = 5.0
+shootingRange = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0366439, 0.469156, -0.882355, 0, 0.882948, 0.469472, 0.999328, 0.0172033, -0.0323546, 0, 7, 0)
+
+[node name="Enj" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="j" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
+
+[node name="Solider_En" parent="." instance=ExtResource("2_nib8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 0, 0)
+speed = 5.0
+shootingRange = 5.0
+
+[node name="UFO" parent="." instance=ExtResource("3_nga5r")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 7, 3, 0)
+speed = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u4r58")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7aisn4xfio4h"]
+
+[ext_resource type="Script" path="res://scripts/Solider.gd" id="1_m6nsw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjeh7"]
+size = Vector3(15, 3.616, 15)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7goc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_setqe"]
+
+[node name="Solider" type="CharacterBody3D"]
+script = ExtResource("1_m6nsw")
+
+[node name="enemeyDetector" type="Area3D" parent="."]
+
+[node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
+shape = SubResource("BoxShape3D_hjeh7")
+
+[node name="solidoundary" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_d7goc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_setqe")
+
+[node name="shootingTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="rocketAimingPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.895675, 0.778848, 0)
+
+[connection signal="body_entered" from="enemeyDetector" to="." method="_ObjectEnteredDetectionRange"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="shootingTimer" to="." method="_on_shooting_timer_timeout"]
