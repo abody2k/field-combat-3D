@@ -10,7 +10,7 @@ var target : Vector3
 func _physics_process(delta):
 	
 
-	velocity=((target- position)* rocketSpeed )
+	velocity=((target- position)* rocketSpeed)
 	var result = null
 
 	if move_and_slide():
