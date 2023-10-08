@@ -97,8 +97,8 @@ func _on_shooting_timer_timeout():
 		state=SEARCHING
 		return
 	
-
-	if target:
+	
+	if target and target is CharacterBody3D:
 		#shoot
 		#create rocket
 		#change its rotation and position

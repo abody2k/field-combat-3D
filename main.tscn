@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=6 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://solider.tscn" id="2_nib8e"]
 [ext_resource type="PackedScene" uid="uid://b1ega158uiio7" path="res://UFO.tscn" id="3_nga5r"]
+[ext_resource type="Texture2D" uid="uid://dgrbl430f5x0s" path="res://icon.svg" id="4_iagxj"]
 
 [sub_resource type="Environment" id="Environment_u4r58"]
 ambient_light_source = 3
@@ -46,3 +47,29 @@ speed = 5.0
 environment = SubResource("Environment_u4r58")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="img" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.9998
+offset_top = -45.9999
+offset_right = -57.9998
+offset_bottom = -44.9999
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.08487, 0.960066)
+texture = ExtResource("4_iagxj")

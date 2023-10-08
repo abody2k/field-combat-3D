@@ -18,9 +18,9 @@ func _physics_process(delta):
 		#result.get_collider()
 	if result is CharacterBody3D :
 
-		
+		print(result.name)
 
-		if result.name.find("Rocket")<0:
+		if result.name.find("Rocket")>=0:
 			queue_free()
 		else:
 			result.queue_free()
@@ -29,3 +29,8 @@ func _physics_process(delta):
 	elif result != null:
 #		print(result)
 		queue_free()
+
+
+func _on_timer_timeout():
+	queue_free()
+	pass # Replace with function body.

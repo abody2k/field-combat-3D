@@ -10,7 +10,7 @@ var absorbObj : CharacterBody3D
 var absorbOnjPos = Vector3.ZERO
 var rocket = preload("res://rocket.tscn")
 var velo = Vector3.ZERO
-
+var pressingTime: float
 func _ready():
 	$AnimationPlayer.play("rotation")
 	pass
@@ -28,9 +28,23 @@ func movement():
 	
 	velo.x=-Input.get_axis("moveUP","moveDOWN")
 	velo.z=Input.get_axis("moveLEFT","moveRIGHT")
+	if velo != Vector3.ZERO:
+		print("Moving")
+#		print((pressingTime - Time.get_ticks_msec())/1000.0)
+		if ( Time.get_ticks_msec()-pressingTime)/1000.0 >= 0.5:
+			pressingTime=0
+			switchingUnits()
+		elif pressingTime == 0 :
+			pressingTime = 	 Time.get_ticks_msec()
 
+		
 	velocity = velo * speed 
 	move_and_slide()
+	
+func switchingUnits():
+	print("Changd color")
+	(get_parent().get_node("CanvasLayer/Control/img") as TextureRect).modulate =Color(randi_range(0,140),0,0)
+	
 	
 func absorbing():
 	if Input.is_action_just_pressed("absorb") and state != ABSROBING:
