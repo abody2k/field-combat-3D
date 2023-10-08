@@ -6,11 +6,13 @@ extends CharacterBody3D
 var readyToAttack=true
 var state=IDLE
 enum {IDLE,ABSROBING}
+enum {SOLIDER,TANK,HELICOPTER,CANNON}
 var absorbObj : CharacterBody3D
 var absorbOnjPos = Vector3.ZERO
 var rocket = preload("res://rocket.tscn")
 var velo = Vector3.ZERO
 var pressingTime: float
+var currentUnit = SOLIDER
 func _ready():
 	$AnimationPlayer.play("rotation")
 	pass
@@ -43,8 +45,12 @@ func movement():
 	
 func switchingUnits():
 	print("Changd color")
-	(get_parent().get_node("CanvasLayer/Control/img") as TextureRect).modulate =Color(randi_range(0,140),0,0)
-	
+	#Check the current index if it's the last one then move it back to 0
+	if currentUnit == HELICOPTER :
+		currentUnit = SOLIDER
+	#change Image acording to the current Index
+#	(get_parent().get_node("CanvasLayer/Control/img") as TextureRect).modulate =Color(randi_range(0,140),0,0)
+#	(get_parent().get_node("CanvasLayer/Control/img") as TextureRect).texture = load("res://assets/"+str(currentUnit))
 	
 func absorbing():
 	if Input.is_action_just_pressed("absorb") and state != ABSROBING:
