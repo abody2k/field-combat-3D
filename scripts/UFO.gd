@@ -6,13 +6,14 @@ extends CharacterBody3D
 var readyToAttack=true
 var state=IDLE
 enum {IDLE,ABSROBING}
-enum {SOLIDER,TANK,HELICOPTER,CANNON}
+enum UNITS {SOLIDER,TANK,HELICOPTER,CANNON}
 var absorbObj : CharacterBody3D
 var absorbOnjPos = Vector3.ZERO
 var rocket = preload("res://rocket.tscn")
+
 var velo = Vector3.ZERO
 var pressingTime: float
-var currentUnit = SOLIDER
+var currentUnit = UNITS.SOLIDER
 func _ready():
 	$AnimationPlayer.play("rotation")
 	pass
@@ -46,8 +47,11 @@ func movement():
 func switchingUnits():
 	print("Changd color")
 	#Check the current index if it's the last one then move it back to 0
-	if currentUnit == HELICOPTER :
-		currentUnit = SOLIDER
+	
+	if currentUnit == UNITS.HELICOPTER :
+		currentUnit = UNITS.SOLIDER
+	else :
+		currentUnit+=1
 	#change Image acording to the current Index
 #	(get_parent().get_node("CanvasLayer/Control/img") as TextureRect).modulate =Color(randi_range(0,140),0,0)
 #	(get_parent().get_node("CanvasLayer/Control/img") as TextureRect).texture = load("res://assets/"+str(currentUnit))
@@ -109,13 +113,25 @@ func fromGroundToUFO():
 #		absorbObj=null
 		
 		
+func spawning():
 	
+	if Input.is_action_just_pressed("spawn"):
+		pass
+		#load unit from res
+		#give it a random position
+		#
+		var unit = load("res://"+str(UNITS.keys()[currentUnit]).to_lower()+".tscn")
+		var nunit=unit.instantiate()
+		get_parent().add_child(nunit)
+		
+	pass
 func _physics_process(delta):
 	match state:
 		IDLE:
 			movement()
 			attacking()
 			absorbing()
+			spawning()
 		ABSROBING:
 #			suckingObject(delta)
 			pass
