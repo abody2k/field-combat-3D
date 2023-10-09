@@ -1,0 +1,24 @@
+extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func submit_username(username : String):
+	var file = FileAccess.open_encrypted_with_pass("user://username.save",FileAccess.WRITE,"Hola madri")
+	file.store_line(JSON.stringify({
+		
+		"username":username
+	}))
+	
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_button_button_down():
+	submit_username($CanvasLayer/Control/TextEdit.get_line(0))
+	get_tree().change_scene_to_file("res://start.tscn")

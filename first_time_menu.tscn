@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo4sf4arnp4lc"]
+
+[ext_resource type="Script" path="res://first_time_menu.gd" id="1_etdm3"]
+
+[node name="firstTimeMenu" type="Node2D"]
+script = ExtResource("1_etdm3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -86.0
+offset_right = 73.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Submit username"
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.497
+anchor_top = 0.267
+anchor_right = 0.665
+anchor_bottom = 0.321
+offset_left = -92.544
+offset_top = -0.0160065
+offset_right = -92.08
+offset_bottom = -0.00801086
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter your username"
+
+[connection signal="button_down" from="CanvasLayer/Control/Button" to="." method="_on_button_button_down"]

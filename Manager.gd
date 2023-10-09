@@ -11,7 +11,7 @@ func save():
 		
 		
 		
-		"maximumScore":maximumScore,
+		"ms":maximumScore,
 		
 	}
 	
@@ -21,6 +21,7 @@ func saveProgress():
 	var file=FileAccess.open("user://savegame.save",FileAccess.WRITE)
 	file.store_line(JSON.stringify(save()))
 	print("Data is stored")
+	$HTTPRequest.request("http://localhost:3000/sd",["Content-Type: Application/json"],HTTPClient.METHOD_POST,JSON.stringify(save()))
 
 func loadProgress():
 	if not FileAccess.file_exists("user://savegame.save"):
