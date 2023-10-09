@@ -123,6 +123,9 @@ func spawning():
 		var unit = load("res://"+str(UNITS.keys()[currentUnit]).to_lower()+".tscn")
 		var nunit=unit.instantiate()
 		get_parent().add_child(nunit)
+		nunit.position = get_parent().position + Vector3(1,0,0.05) * randi_range(0,10)
+		
+		
 		
 	pass
 func _physics_process(delta):
