@@ -129,6 +129,12 @@ func spawning():
 		
 	pass
 func _physics_process(delta):
+	
+	if Input.is_key_pressed(KEY_L):
+		get_tree().get_first_node_in_group("manager").call("loadProgress")
+	if Input.is_key_pressed(KEY_S):
+		get_tree().get_first_node_in_group("manager").call("saveProgress")
+		
 	match state:
 		IDLE:
 			movement()

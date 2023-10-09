@@ -75,5 +75,5 @@ grow_vertical = 0
 scale = Vector2(1.08487, 0.960066)
 texture = ExtResource("4_iagxj")
 
-[node name="Manager" type="Node" parent="."]
+[node name="Manager" type="Node" parent="." groups=["manager"]]
 script = ExtResource("5_apm4y")

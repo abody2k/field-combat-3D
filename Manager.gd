@@ -2,11 +2,11 @@ extends Node
 
 
 
-var maximumScore : float
+var maximumScore : float = randi_range(0,999999)
 var currentScore : float 
 func save():
 	
-	
+	maximumScore= randi_range(0,999999)
 	return {
 		
 		
@@ -14,3 +14,23 @@ func save():
 		"maximumScore":maximumScore,
 		
 	}
+	
+	
+func saveProgress():
+	
+	var file=FileAccess.open("user://savegame.save",FileAccess.WRITE)
+	file.store_line(JSON.stringify(save()))
+	print("Data is stored")
+
+func loadProgress():
+	if not FileAccess.file_exists("user://savegame.save"):
+		print("No such file")
+		return
+	var file = FileAccess.open("user://savegame.save",FileAccess.READ)
+	
+	var json = JSON.new()
+	json.parse(file.get_line())
+	print(json.get_data())
+	
+	pass
+	
