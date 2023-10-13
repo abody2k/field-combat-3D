@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
-[ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://solider.tscn" id="2_nib8e"]
-[ext_resource type="PackedScene" uid="uid://b1ega158uiio7" path="res://UFO.tscn" id="3_nga5r"]
+[ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://scenes/solider.tscn" id="2_nib8e"]
+[ext_resource type="PackedScene" uid="uid://b1ega158uiio7" path="res://scenes/UFO.tscn" id="3_nga5r"]
 [ext_resource type="Texture2D" uid="uid://dgrbl430f5x0s" path="res://icon.svg" id="4_iagxj"]
-[ext_resource type="Script" path="res://Manager.gd" id="5_apm4y"]
+[ext_resource type="Script" path="res://scripts/Manager.gd" id="5_wiuob"]
 
 [sub_resource type="Environment" id="Environment_u4r58"]
 ambient_light_source = 3
@@ -76,6 +76,6 @@ scale = Vector2(1.08487, 0.960066)
 texture = ExtResource("4_iagxj")
 
 [node name="Manager" type="Node" parent="." groups=["manager"]]
-script = ExtResource("5_apm4y")
+script = ExtResource("5_wiuob")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Manager"]

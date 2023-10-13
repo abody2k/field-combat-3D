@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bo4sf4arnp4lc"]
 
-[ext_resource type="Script" path="res://first_time_menu.gd" id="1_etdm3"]
+[ext_resource type="Script" path="res://scripts/first_time_menu.gd" id="1_m6fgq"]
 
 [node name="firstTimeMenu" type="Node2D"]
-script = ExtResource("1_etdm3")
+script = ExtResource("1_m6fgq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

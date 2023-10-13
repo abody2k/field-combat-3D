@@ -167,6 +167,7 @@ func _on_tree_exiting():
 	if is_instance_valid(absorbObj):
 		absorbObj.position= absorbOnjPos
 		absorbObj.unFreezeMe()
+		
 	
 	
 	pass # Replace with function body.

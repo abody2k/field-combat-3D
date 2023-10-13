@@ -1,7 +1,7 @@
 extends "res://scripts/AI.gd"
 
 
-var rocket = preload("res://rocket.tscn")
+var rocket = preload("res://scenes/rocket.tscn")
 func _ready():
 	
 	print(state)

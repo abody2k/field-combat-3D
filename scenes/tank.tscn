@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvirbn208av86"]
+
+[ext_resource type="Script" path="res://scenes/tank.gd" id="1_55653"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3odf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uuwtx"]
+size = Vector3(2.42341, 0.161254, 1.18398)
+
+[node name="tank" type="CharacterBody3D"]
+script = ExtResource("1_55653")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.44554, 0, 0, 0, 0.143507, 0, 0, 0, 1.20103, 0, 0, 0)
+mesh = SubResource("BoxMesh_n3odf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uuwtx")
