@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bys1lejdoq5rq"]
+[gd_scene load_steps=3 format=3 uid="uid://bys1lejdoq5rq"]
 
 [ext_resource type="PackedScene" uid="uid://cvirbn208av86" path="res://scenes/tank.tscn" id="1_rhwly"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ctmmc"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -8,9 +10,12 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.31061, 0, 0.918993)
 
 [node name="target" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="target"]
+mesh = SubResource("CylinderMesh_ctmmc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -4.731, 2, 5.849)
+transform = Transform3D(1, 0, 0, 0, 0.75471, 0.656059, 0, -0.656059, 0.75471, -3.731, 10, 14.849)
