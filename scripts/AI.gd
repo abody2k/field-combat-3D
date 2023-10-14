@@ -74,14 +74,17 @@ func _physics_process(delta):
 #			pass
 		SEARCHING:
 		# WRITE SEARCHING SCRIPT
-			onSearching()
+			onSearching(delta)
 		
 			pass
-	
+			
+##a a function that is called when a target is detected passing the target throgh it
+func addFind(obj : Node3D):
+	pass	
 ## this function is used when the AI is searching for an enemy
 #checks if there is a player or not,if there is and in range it attacks if not it moves
 #towards it and if there is no player it looks for the final point to go to
-func onSearching():
+func onSearching(delta ):
 	
 	
 #	print("Searching")
@@ -92,13 +95,16 @@ func onSearching():
 
 			$shootingTimer.start()	
 			state=SHOOTING
+
 		else :
 			if path.size()<1 :
 				return
 #			if target.name=="j":
 			#print("please note that im the bot",( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized())
-			move()
+
+			move(delta )
 			#print(Vector2(position.x,position.z).distance_squared_to( path[0]))
+			
 			if Vector2(position.x,position.z).distance_squared_to( path[0])<1:
 				path.remove_at(0)
 		pass
@@ -109,12 +115,13 @@ func onSearching():
 		if name.find("En")>=0:
 #			print("I tired doing it as a bot")
 			var obj=get_parent().get_node("j")
+			addFind(obj)
 
 			ObjectEnteredDetectionRange(obj)
 #			print(path)
 		else:
 			var obj=get_parent().get_node("Enj")
-
+			addFind(obj)
 			ObjectEnteredDetectionRange(obj)
 	
 ## this function is used to stop the AI and start shooting

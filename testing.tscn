@@ -19,3 +19,5 @@ mesh = SubResource("CylinderMesh_ctmmc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.75471, 0.656059, 0, -0.656059, 0.75471, -3.731, 10, 14.849)
+
+[node name="shootingTimer" type="Timer" parent="."]

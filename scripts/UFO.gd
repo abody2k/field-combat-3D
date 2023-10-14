@@ -9,7 +9,7 @@ enum {IDLE,ABSROBING}
 enum UNITS {SOLIDER,TANK,HELICOPTER,CANNON}
 var absorbObj : CharacterBody3D
 var absorbOnjPos = Vector3.ZERO
-var rocket = preload("res://rocket.tscn")
+var rocket = preload("res://scenes/rocket.tscn")
 
 var velo = Vector3.ZERO
 var pressingTime: float

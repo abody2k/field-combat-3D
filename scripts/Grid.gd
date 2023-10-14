@@ -26,14 +26,6 @@ func _ready():
 	
 	grid.set_point_solid(Vector2i(3,3))	
 
-#
-#	grid.resize(gridWidth)
-#	var temp = []
-#	temp.resize(gridHeight)
-#	temp.fill(0)
-#	grid.fill(temp)
-#
-#	print(grid)
 	
 	pass
 
