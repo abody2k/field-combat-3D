@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=10 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://scenes/solider.tscn" id="2_nib8e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dgrbl430f5x0s" path="res://icon.svg" id="4_iagxj"]
 [ext_resource type="Script" path="res://scripts/Manager.gd" id="5_wiuob"]
 [ext_resource type="PackedScene" uid="uid://cvirbn208av86" path="res://scenes/tank.tscn" id="6_w4b4p"]
+[ext_resource type="PackedScene" uid="uid://r6ro4k3nw8de" path="res://scenes/helicopter.tscn" id="7_dd536"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_oc4nb"]
 
@@ -95,3 +96,7 @@ script = ExtResource("5_wiuob")
 [node name="tank" parent="." instance=ExtResource("6_w4b4p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, 40)
 shootingRange = 10.0
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("7_dd536")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.765, 16.281, 24)
+radius = 34.0

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://r6ro4k3nw8de"]
+
+[ext_resource type="Script" path="res://scripts/helicopter.gd" id="1_il1gw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jt1ai"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o1hdj"]
+size = Vector3(1, 1, 2.62302)
+
+[node name="helicopter" type="CharacterBody3D"]
+script = ExtResource("1_il1gw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.66822, 0, 0, 0)
+mesh = SubResource("BoxMesh_jt1ai")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.72638, 0, 0.72596, 0.974537)
+mesh = SubResource("BoxMesh_jt1ai")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_o1hdj")
+
+[node name="shootingTimer" type="Timer" parent="."]

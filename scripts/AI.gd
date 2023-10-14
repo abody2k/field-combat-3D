@@ -9,6 +9,9 @@ enum  {SEARCHING, SHOOTING,DISABLED}
 var path : PackedVector2Array
 var state = 0
 
+##used by flying objects
+func flyAround(delta : float):
+	pass
 #run this func when target is null to go search for enemies
 func lookForEnemies():
 	velocity= forwardDirection * speed
@@ -68,7 +71,8 @@ func _physics_process(delta):
 		
 		DISABLED:
 			pass
-#		SHOOTING:
+		SHOOTING:
+			flyAround(delta)
 #		#WRITE SHOOTING SCRIPT
 #			onShooting()
 #			pass
@@ -104,7 +108,7 @@ func onSearching(delta ):
 
 			move(delta )
 			#print(Vector2(position.x,position.z).distance_squared_to( path[0]))
-			
+#			print(Vector2(position.x,position.z).distance_squared_to( path[0]))
 			if Vector2(position.x,position.z).distance_squared_to( path[0])<1:
 				path.remove_at(0)
 		pass
