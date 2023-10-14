@@ -55,11 +55,48 @@ func ObjectEnteredDetectionRange(body):
 
 
 
+#applies the movement to the unit, a movement for a unit is far different from a tank and so on
+func move(delta : float =0):
+	pass
+	
 ## this function is used when the AI is searching for an enemy
+#checks if there is a player or not,if there is and in range it attacks if not it moves
+#towards it and if there is no player it looks for the final point to go to
 func onSearching():
 	
 	
-	pass
+#	print("Searching")
+	if is_instance_valid(target) :
+	
+#		print("I'm",name," and my enemy is",target.name)
+		if target.position.distance_to(position) <= shootingRange:
+
+			$shootingTimer.start()	
+			state=SHOOTING
+		else :
+			if path.size()<1 :
+				return
+#			if target.name=="j":
+			#print("please note that im the bot",( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized())
+			move()
+			#print(Vector2(position.x,position.z).distance_squared_to( path[0]))
+			if Vector2(position.x,position.z).distance_squared_to( path[0])<1:
+				path.remove_at(0)
+		pass
+#	print("searching")
+	else :
+#		print("ENrolled here")
+
+		if name.find("En")>=0:
+#			print("I tired doing it as a bot")
+			var obj=get_parent().get_node("j")
+
+			ObjectEnteredDetectionRange(obj)
+#			print(path)
+		else:
+			var obj=get_parent().get_node("Enj")
+
+			ObjectEnteredDetectionRange(obj)
 	
 ## this function is used to stop the AI and start shooting
 func onShooting():

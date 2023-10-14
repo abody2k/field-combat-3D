@@ -6,6 +6,11 @@ func _ready():
 	
 	print(state)
 
+func move(delta : float =0):
+		velocity =( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized() * speed
+		move_and_slide()
+#checks if there is a player or not,if there is and in range it attacks if not it moves
+#towards it and if there is no player it looks for the final point to go to
 func onSearching():
 	
 	
