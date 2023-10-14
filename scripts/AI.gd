@@ -58,6 +58,25 @@ func ObjectEnteredDetectionRange(body):
 #applies the movement to the unit, a movement for a unit is far different from a tank and so on
 func move(delta : float =0):
 	pass
+
+
+func _physics_process(delta):
+	
+
+
+	match state:
+		
+		DISABLED:
+			pass
+#		SHOOTING:
+#		#WRITE SHOOTING SCRIPT
+#			onShooting()
+#			pass
+		SEARCHING:
+		# WRITE SEARCHING SCRIPT
+			onSearching()
+		
+			pass
 	
 ## this function is used when the AI is searching for an enemy
 #checks if there is a player or not,if there is and in range it attacks if not it moves
