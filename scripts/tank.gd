@@ -5,7 +5,7 @@ const SPEED = 10
 var timer=0
 ##the tank movement is different because it needs to go in a circular path if it wants to rotate
 var firstDeg : Basis = Basis()
-
+const CANNON_ROTATION_TRESHOLD=0.8
 func _ready():
 	pass
 	
@@ -20,6 +20,11 @@ func aiming(delta : float):
 	# taking the direction vector (difference between target and current object positions) normalizing it and doing
 	#dot product gives us a check if an object is looking at another one, using a threshold like 0.9 means they
 	#are looking at each other directly 
+	
+	if ($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.basis.z) >=CANNON_ROTATION_TRESHOLD:
+		finishedAiming= true
+	else :
+		finishedAiming = false
 	
 	pass	
 func move(delta : float =0):
