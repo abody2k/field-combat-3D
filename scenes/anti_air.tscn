@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://drhvqdp3g7bul"]
+
+[ext_resource type="Script" path="res://scripts/anti_air.gd" id="1_q63d3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_023l7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hlbro"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_atyrj"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 6.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dgyc"]
+size = Vector3(6.07761, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nm6qm"]
+size = Vector3(24.0612, 14.1155, 13.6721)
+
+[node name="anti_air" type="Node3D"]
+script = ExtResource("1_q63d3")
+
+[node name="base" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.01389, 0, 0, 0, 0.158412, 0, 0, 0, 2.96835, 0, -0.302402, 0)
+mesh = SubResource("BoxMesh_023l7")
+
+[node name="cannon" type="StaticBody3D" parent="."]
+
+[node name="ball" type="MeshInstance3D" parent="cannon"]
+mesh = SubResource("SphereMesh_hlbro")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cannon/ball"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2.6829, 0, 0)
+mesh = SubResource("CylinderMesh_atyrj")
+
+[node name="shape" type="CollisionShape3D" parent="cannon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72429, 0, -0.00699019)
+shape = SubResource("BoxShape3D_6dgyc")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1441, 6.54769, 0)
+shape = SubResource("BoxShape3D_nm6qm")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]

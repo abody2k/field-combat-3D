@@ -100,7 +100,7 @@ func onSearching(delta ):
 	
 #		print("I'm",name," and my enemy is",target.name)
 		if target.position.distance_to(position) <= shootingRange:
-			
+			print(position)
 			$shootingTimer.start()	
 			state=SHOOTING
 
