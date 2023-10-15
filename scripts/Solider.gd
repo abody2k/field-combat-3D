@@ -40,6 +40,10 @@ func onShooting():
 
 
 func _on_shooting_timer_timeout():
+	if not finishedAiming:
+		return
+		
+		
 	if name.find("En")>=0 :
 		print("Shooting as AI")
 	else:

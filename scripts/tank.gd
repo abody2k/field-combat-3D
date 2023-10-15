@@ -11,7 +11,17 @@ func _ready():
 	
 #	target = get_parent_node_3d().get_node("target")
 
+func aiming(delta : float):
+	var b = Basis()
+	$cannonBase.basis = $cannonBase.basis.slerp(Basis.looking_at(Vector3(target.position.x,0,target.position.z)- $cannonBase.global_position),delta)
+	b= Basis()
+	if not Vector3(0,target.position.y,0)-$cannonBase/cannon.position == Vector3.ZERO:
+		$cannonBase/cannon.basis = $cannonBase/cannon.basis.slerp(Basis.looking_at(target.position-$cannonBase/cannon.global_position),delta)
+	# taking the direction vector (difference between target and current object positions) normalizing it and doing
+	#dot product gives us a check if an object is looking at another one, using a threshold like 0.9 means they
+	#are looking at each other directly 
 	
+	pass	
 func move(delta : float =0):
 	
 #	print(rad_to_deg(position.angle_to(target.position)))

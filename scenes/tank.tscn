@@ -1,14 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvirbn208av86"]
+[gd_scene load_steps=6 format=3 uid="uid://cvirbn208av86"]
 
-[ext_resource type="Script" path="res://scenes/tank.gd" id="1_55653"]
+[ext_resource type="Script" path="res://scripts/tank.gd" id="1_3kk3i"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_n3odf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uuwtx"]
 size = Vector3(2.42341, 0.161254, 1.18398)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_f33l2"]
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rxcjj"]
+top_radius = 0.1
+bottom_radius = 0.1
+
 [node name="tank" type="CharacterBody3D"]
-script = ExtResource("1_55653")
+script = ExtResource("1_3kk3i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.06898e-07, 0, 1.20103, 0, 0.143507, 0, -2.44554, 0, -5.24987e-08, 0, 0, 0)
@@ -21,3 +28,14 @@ shape = SubResource("BoxShape3D_uuwtx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2819, 0, -5.33801)
 
 [node name="shootingTimer" type="Timer" parent="."]
+
+[node name="cannonBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205609, 0)
+mesh = SubResource("CylinderMesh_f33l2")
+
+[node name="cannon" type="Node3D" parent="cannonBase"]
+
+[node name="canon" type="MeshInstance3D" parent="cannonBase/cannon"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.72529e-08, 0, 0.974895)
+mesh = SubResource("CylinderMesh_rxcjj")
+skeleton = NodePath("../..")
