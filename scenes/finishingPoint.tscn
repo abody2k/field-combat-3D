@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://33f4kuhiv4mw"]
+
+[ext_resource type="Script" path="res://scripts/finishingPoint.gd" id="1_yf2g0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pdmmu"]
+
+[node name="finishingPoint" type="Area3D"]
+script = ExtResource("1_yf2g0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.50291, 0)
+shape = SubResource("BoxShape3D_pdmmu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

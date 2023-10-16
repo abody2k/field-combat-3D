@@ -4,7 +4,7 @@ extends Node3D
 @export var gridWidth : int =1
 @export var gridHeight : int =1
 @export var gridRectSize : Vector2i =Vector2i(1,1)
-
+var currentUFO 
 var grid = AStarGrid2D.new()
 
 
@@ -29,3 +29,12 @@ func _ready():
 	
 	pass
 
+
+
+func _on_ufo_en_timeout():
+	#create a UFO and send it
+	if not is_instance_valid(currentUFO):
+		#make a new UFO
+		
+		pass
+	pass # Replace with function body.

@@ -11,6 +11,14 @@ var team
 var path : PackedVector2Array
 var state = 0
 var finishedAiming : bool = false
+## a function that makes the unit goes to the winner new side
+func disable_me():
+	($enemeyDetector as Area3D).monitoring = false
+	var x = Node3D.new()
+	get_parent().add_child(x)
+	x.position=get_parent().get_node("finishingPoint").position + Vector3( randf_range(20,70),0,randf_range(20,70))
+	target = x
+	pass
 ##used by flying objects
 func choosingTeam():
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=18 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://scenes/solider.tscn" id="2_nib8e"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cvirbn208av86" path="res://scenes/tank.tscn" id="6_w4b4p"]
 [ext_resource type="PackedScene" uid="uid://r6ro4k3nw8de" path="res://scenes/helicopter.tscn" id="7_dd536"]
 [ext_resource type="PackedScene" uid="uid://drhvqdp3g7bul" path="res://scenes/anti_air.tscn" id="8_k4dj6"]
+[ext_resource type="PackedScene" uid="uid://33f4kuhiv4mw" path="res://scenes/finishingPoint.tscn" id="9_j6pp2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_oc4nb"]
 
@@ -26,14 +27,19 @@ glow_blend_mode = 4
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4a0fg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ommyw"]
-size = Vector3(100, 1, 100)
+size = Vector3(400, 1, 100)
 
 [sub_resource type="Skin" id="Skin_shuqs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3eubm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a5nnb"]
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_qlexn")
 gridWidth = 100
-gridHeight = 100
+gridHeight = 400
 
 [node name="Solider" parent="." instance=ExtResource("2_nib8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 6)
@@ -70,6 +76,9 @@ shootingRange = 5.0
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 7, 3, 0)
 speed = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="UFO"]
+transform = Transform3D(-2.50538e-06, 0.987688, 0.156434, -2.85469e-09, -0.156434, 0.987688, 1, 2.47409e-06, 3.94746e-07, -2.99996, 25, -15)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u4r58")
@@ -150,11 +159,22 @@ transform = Transform3D(-0.619203, -0.714828, -0.324974, -0.755854, 0.654741, -1
 [node name="t" type="MeshInstance3D" parent="t"]
 mesh = SubResource("CylinderMesh_vwkd2")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-2.98023e-08, -0.987688, -0.156434, -2.85469e-09, -0.156434, 0.987688, -1, 2.9882e-08, 1.84255e-09, 10, 28, 15)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, -8.71914, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -8.719, 50)
 material_override = SubResource("StandardMaterial3D_4a0fg")
 mesh = SubResource("BoxMesh_ommyw")
 skin = SubResource("Skin_shuqs")
+
+[node name="finishingPoint" parent="." instance=ExtResource("9_j6pp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 3, 50)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="finishingPoint"]
+material_override = SubResource("StandardMaterial3D_3eubm")
+mesh = SubResource("CylinderMesh_a5nnb")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="UFO_EN" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="UFO_EN" to="." method="_on_ufo_en_timeout"]
