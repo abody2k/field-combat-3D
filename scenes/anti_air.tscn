@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://drhvqdp3g7bul"]
+[gd_scene load_steps=6 format=3 uid="uid://drhvqdp3g7bul"]
 
 [ext_resource type="Script" path="res://scripts/anti_air.gd" id="1_q63d3"]
 
@@ -10,7 +10,10 @@ size = Vector3(45.741, 14.1155, 30.3686)
 [sub_resource type="BoxMesh" id="BoxMesh_4mddh"]
 size = Vector3(10, 1, 1)
 
-[node name="anti_air" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mm1l"]
+size = Vector3(3.32831, 2.36319, 3.13237)
+
+[node name="anti_air_En" type="CharacterBody3D"]
 script = ExtResource("1_q63d3")
 
 [node name="base" type="MeshInstance3D" parent="."]
@@ -34,6 +37,10 @@ skeleton = NodePath("../..")
 
 [node name="rocketAimingPoint" type="Node3D" parent="ball/ball"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.87896, 0, 2.13266e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.365417)
+shape = SubResource("BoxShape3D_2mm1l")
 
 [connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area3D" to="." method="_on_area_3d_body_shape_exited"]

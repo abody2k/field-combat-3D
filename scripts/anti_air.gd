@@ -7,7 +7,7 @@ func _ready():
 	pass # Replace with function body.
 enum MODES {WAITING,AIMING,ATTACKING,RELOADING}
 var current_mode = MODES.WAITING
-
+const team=1
 func aiming(delta : float =0):
 	if  targets.size() < 1 :
 		current_mode = MODES.WAITING
@@ -35,7 +35,7 @@ func aiming(delta : float =0):
 	
 #	print(($ball.global_transform.basis.z.dot(direction.normalized())))
 #	return
-	print(($ball.global_transform.basis.z.dot(direction.normalized())) )
+#	print(($ball.global_transform.basis.z.dot(direction.normalized())) )
 	if ($ball.global_transform.basis.z.dot(direction.normalized())) <-0.9999 and current_mode != MODES.RELOADING:
 		print("ATTACKING !!!")
 		current_mode=MODES.ATTACKING
@@ -51,6 +51,7 @@ func attacking():
 	
 	myRocket.position = $ball/ball/rocketAimingPoint.global_position 
 	myRocket.target = targets[0].position
+	myRocket.myTeam = 1
 		
 	get_parent().add_child(myRocket)
 	(myRocket as CharacterBody3D).look_at(targets[0].position)

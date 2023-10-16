@@ -5,11 +5,21 @@ extends CharacterBody3D
 @export var forwardDirection : Vector3
 @export var speed : float = 10.0
 @export var shootingRange : float = 20.0
-enum  {SEARCHING, SHOOTING,DISABLED}
+enum  {SEARCHING,AIMING, SHOOTING,DISABLED}
+enum  TEAM {BLUE,RED}
+var team
 var path : PackedVector2Array
 var state = 0
 var finishedAiming : bool = false
 ##used by flying objects
+func choosingTeam():
+	
+	if name.find("En") >=0 :
+		team = TEAM.RED
+	else :
+		team = TEAM.BLUE
+		
+
 func flyAround(delta : float):
 	pass
 #run this func when target is null to go search for enemies
@@ -18,6 +28,8 @@ func lookForEnemies():
 	move_and_slide()
 	pass
 
+func _ready():
+	choosingTeam()
 func freezeMe():
 	print("I'M SO FREEZED !")
 	($enemeyDetector as Area3D).monitoring=false
@@ -74,7 +86,7 @@ func _physics_process(delta):
 		
 		DISABLED:
 			pass
-		SHOOTING:
+		AIMING:
 			flyAround(delta)
 			aiming(delta)
 #		#WRITE SHOOTING SCRIPT
@@ -84,6 +96,7 @@ func _physics_process(delta):
 		# WRITE SEARCHING SCRIPT
 			onSearching(delta)
 		
+		
 			pass
 			
 ##a a function that is called when a target is detected passing the target throgh it
@@ -92,6 +105,8 @@ func addFind(obj : Node3D):
 ## this function is used when the AI is searching for an enemy
 #checks if there is a player or not,if there is and in range it attacks if not it moves
 #towards it and if there is no player it looks for the final point to go to
+func attack():
+	pass
 func onSearching(delta ):
 	
 	
@@ -100,9 +115,11 @@ func onSearching(delta ):
 	
 #		print("I'm",name," and my enemy is",target.name)
 		if target.position.distance_to(position) <= shootingRange:
-			print(position)
-			$shootingTimer.start()	
-			state=SHOOTING
+			print("started shooting as a "+name)
+			
+			
+			state=AIMING
+			
 
 		else :
 			if path.size()<1 :

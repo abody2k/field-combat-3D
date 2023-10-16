@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvirbn208av86"]
+[gd_scene load_steps=7 format=3 uid="uid://cvirbn208av86"]
 
 [ext_resource type="Script" path="res://scripts/tank.gd" id="1_3kk3i"]
 
@@ -6,13 +6,16 @@
 size = Vector3(1, 0.2, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uuwtx"]
-size = Vector3(2.42341, 0.161254, 1.18398)
+size = Vector3(2.42341, 0.161254, 3.93928)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_f33l2"]
 height = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_mxd6e"]
 size = Vector3(0.5, 0.5, 4.54)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnhyn"]
+size = Vector3(15, 3.616, 15)
 
 [node name="tank" type="CharacterBody3D"]
 script = ExtResource("1_3kk3i")
@@ -37,3 +40,14 @@ mesh = SubResource("CylinderMesh_f33l2")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="cannonBase/cannon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.12871)
 mesh = SubResource("BoxMesh_mxd6e")
+
+[node name="target" type="Node3D" parent="cannonBase/cannon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.3615)
+
+[node name="enemeyDetector" type="Area3D" parent="."]
+
+[node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
+shape = SubResource("BoxShape3D_dnhyn")
+
+[connection signal="timeout" from="shootingTimer" to="." method="_on_shooting_timer_timeout"]
+[connection signal="body_entered" from="enemeyDetector" to="." method="_on_enemey_detector_body_entered"]

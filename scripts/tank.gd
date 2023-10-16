@@ -5,9 +5,9 @@ const SPEED = 10
 var timer=0
 ##the tank movement is different because it needs to go in a circular path if it wants to rotate
 var firstDeg : Basis = Basis()
-const CANNON_ROTATION_TRESHOLD=0.8
-func _ready():
-	pass
+const CANNON_ROTATION_TRESHOLD=-0.54
+const rocket = preload("res://scenes/rocket.tscn")
+
 	
 #	target = get_parent_node_3d().get_node("target")
 ##function that is used for aiming
@@ -39,20 +39,42 @@ func aiming(delta : float):
 #	$cannonBase.global_transform.basis=$cannonBase.global_transform.basis.scaled(myScale)
 	
 #	print (($cannonBase.global_transform.basis as Basis).get_scale())
-	return
-	if not Vector3(0,target.position.y,0)-$cannonBase/cannon.position == Vector3.ZERO:
-		pass
+#	return
+#	if not Vector3(0,target.position.y,0)-$cannonBase/cannon.position == Vector3.ZERO:
+#		pass
 #		$cannonBase/cannon.basis = $cannonBase/cannon.basis.slerp(Basis.looking_at(Vector3(0,target.position.y,0)-$cannonBase/cannon.position),delta)
 	# taking the direction vector (difference between target and current object positions) normalizing it and doing
 	#dot product gives us a check if an object is looking at another one, using a threshold like 0.9 means they
 	#are looking at each other directly 
+	print(($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.basis.z))
+	if ($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.basis.z) <=CANNON_ROTATION_TRESHOLD:
+		print("attacking as a tank")
+		state = SHOOTING
+		attack()
+		$shootingTimer.start()
+		
+		
+		
 
-	if ($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.basis.z) >=CANNON_ROTATION_TRESHOLD:
-		finishedAiming= true
-	else :
-		finishedAiming = false
 	
-	pass	
+	pass
+	
+func attack():
+	#create rocket
+	#make it go to the target
+	#restart the timer
+	var myRocket = rocket.instantiate()
+	
+	myRocket.position = $cannonBase/cannon/target.global_position 
+	myRocket.target = target.position
+	myRocket.myTeam = team
+		
+	get_parent().add_child(myRocket)
+	(myRocket as CharacterBody3D).look_at(target.position)
+	
+
+	
+		
 func move(delta : float =0):
 	
 #	print(rad_to_deg(position.angle_to(target.position)))
@@ -75,3 +97,13 @@ func move(delta : float =0):
 #	move_and_slide()
 
 #	pass
+
+
+func _on_enemey_detector_body_entered(body):
+	ObjectEnteredDetectionRange(body)
+	pass # Replace with function body.
+
+
+func _on_shooting_timer_timeout():
+	state = SEARCHING
+	pass # Replace with function body.

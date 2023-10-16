@@ -4,7 +4,8 @@ extends CharacterBody3D
 @export var rocketSpeed : float
 var target : Vector3
 
-
+#attack only enemy
+var myTeam = 0
 #Write down the rocket forumla
 
 func _physics_process(delta):
@@ -21,8 +22,14 @@ func _physics_process(delta):
 		print(result.name)
 
 		if result.name.find("Rocket")>=0:
+			
 			queue_free()
 		else:
+			if result.team == myTeam:
+				print("friendly fire")
+				queue_free()
+				return
+				
 			result.queue_free()
 			queue_free()
 			
