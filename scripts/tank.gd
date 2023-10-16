@@ -27,6 +27,7 @@ func aiming(delta : float):
 #	return
 	
 	if not is_instance_valid(target):
+		state= SEARCHING
 		return 
 	if shootingRange > position.distance_squared_to(target.global_position):
 		state= SEARCHING
