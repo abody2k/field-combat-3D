@@ -44,11 +44,11 @@ func _on_shooting_timer_timeout():
 		return
 		
 		
-	if name.find("En")>=0 :
-		print("Shooting as AI")
-	else:
-		print("Shooting as mini AI")
-	
+#	if name.find("En")>=0 :
+#		print("Shooting as AI")
+#	else:
+#		print("Shooting as mini AI")
+#
 
 	if !is_instance_valid(target):
 		state=SEARCHING

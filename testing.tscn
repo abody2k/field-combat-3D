@@ -1,23 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://bys1lejdoq5rq"]
 
-[ext_resource type="PackedScene" uid="uid://cvirbn208av86" path="res://scenes/tank.tscn" id="1_rhwly"]
+[ext_resource type="PackedScene" uid="uid://drhvqdp3g7bul" path="res://scenes/anti_air.tscn" id="1_6nt45"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ctmmc"]
+[sub_resource type="SphereMesh" id="SphereMesh_e0x7i"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="tank" parent="." instance=ExtResource("1_rhwly")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.31061, 0, 0.918993)
+[node name="anti_air" parent="." instance=ExtResource("1_6nt45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0654054, 0, -0.707957)
 
-[node name="target" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -8)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="target"]
-mesh = SubResource("CylinderMesh_ctmmc")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="ball" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1423, -6.7094, 16.1463)
+mesh = SubResource("SphereMesh_e0x7i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.75471, 0.656059, 0, -0.656059, 0.75471, -3.731, 10, 14.849)
+transform = Transform3D(-1, 0, 8.74228e-08, 7.07624e-08, 0.58722, 0.809427, -5.13364e-08, 0.809427, -0.58722, -24.423, 28.495, -21.987)
+fov = 69.1618
 
-[node name="shootingTimer" type="Timer" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_energy = 39.999
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 4.0
+light_angular_distance = 9.0

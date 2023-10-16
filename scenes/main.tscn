@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=12 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://scenes/solider.tscn" id="2_nib8e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/Manager.gd" id="5_wiuob"]
 [ext_resource type="PackedScene" uid="uid://cvirbn208av86" path="res://scenes/tank.tscn" id="6_w4b4p"]
 [ext_resource type="PackedScene" uid="uid://r6ro4k3nw8de" path="res://scenes/helicopter.tscn" id="7_dd536"]
+[ext_resource type="PackedScene" uid="uid://drhvqdp3g7bul" path="res://scenes/anti_air.tscn" id="8_k4dj6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_oc4nb"]
 
@@ -20,19 +21,20 @@ glow_strength = 2.0
 glow_bloom = 1.0
 glow_blend_mode = 4
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_vwkd2"]
+
 [node name="main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 script = ExtResource("1_qlexn")
 gridWidth = 100
 gridHeight = 100
 
 [node name="Solider" parent="." instance=ExtResource("2_nib8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 6)
 speed = 5.0
 shootingRange = 5.0
 
 [node name="Enj" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.185, 0.344, 14.03)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enj"]
 mesh = SubResource("SphereMesh_oc4nb")
@@ -49,6 +51,7 @@ speed = 5.0
 shootingRange = 5.0
 
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
+process_mode = 4
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 7, 2, 0)
 speed = 5.0
 
@@ -89,13 +92,23 @@ script = ExtResource("5_wiuob")
 [node name="HTTPRequest" type="HTTPRequest" parent="Manager"]
 
 [node name="tank" parent="." instance=ExtResource("6_w4b4p")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, 40)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 0, 12)
 shootingRange = 10.0
 
+[node name="Camera3D" type="Camera3D" parent="tank"]
+transform = Transform3D(1, 0, 0, 0, -0.156434, 0.987688, 0, -0.987688, -0.156434, -3, 28, 0)
+
 [node name="helicopter" parent="." instance=ExtResource("7_dd536")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.765, 16.281, 24)
-radius = 5.0
+radius = 12.0
 temporal = 1.3
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.573576, 0.819152, 0, 0.819152, 0.573576, -1, 2.50718e-08, -3.58063e-08, 84, 49, 40)
+[node name="anti_air" parent="." instance=ExtResource("8_k4dj6")]
+transform = Transform3D(-0.0697565, 0, 0.997564, 0, 1, 0, -0.997564, 0, -0.0697565, 17.333, 0, -0.867)
+
+[node name="t" type="Node3D" parent="."]
+transform = Transform3D(-0.619203, -0.714828, -0.324974, -0.755854, 0.654741, -1.92095e-07, 0.212774, 0.245633, -0.945723, 7.66, 0, 17.735)
+
+[node name="t" type="MeshInstance3D" parent="t"]
+mesh = SubResource("CylinderMesh_vwkd2")

@@ -9,7 +9,7 @@ func flyAround(delta : float):
 	position+= Vector3(cos((deg_to_rad(counter))),0,sin(deg_to_rad(counter))) * radius* delta
 	
 #	counter = counter - int(counter)
-	print(counter)
+
 #	if counter < 0.5 * 5 :
 	return
 	if  int(counter)%int (radius) < radius /2 :
