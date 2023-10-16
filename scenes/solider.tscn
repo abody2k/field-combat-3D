@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Solider.gd" id="1_m6nsw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hjeh7"]
-size = Vector3(15, 3.616, 15)
+size = Vector3(15, 5, 15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7goc"]
 
@@ -15,6 +15,7 @@ script = ExtResource("1_m6nsw")
 [node name="enemeyDetector" type="Area3D" parent="."]
 
 [node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98835, 0)
 shape = SubResource("BoxShape3D_hjeh7")
 
 [node name="solidoundary" type="CollisionShape3D" parent="."]

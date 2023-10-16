@@ -73,7 +73,7 @@ script = ExtResource("1_gyoq5")
 mesh = SubResource("PrismMesh_ndqnn")
 
 [node name="target" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.319371, 0, 0.94763, 0, 1, 0, -0.94763, 0, -0.319371, -6.50675, -1.61441, 3.17618)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.507, -4, 0)
 mesh = SubResource("PlaneMesh_psiyx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -85,7 +85,7 @@ libraries = {
 }
 
 [node name="checker" type="RayCast3D" parent="."]
-target_position = Vector3(-6.50675, -1.61441, 3.17618)
+target_position = Vector3(-6.507, -4, 0)
 debug_shape_custom_color = Color(0.94328, 0.0730168, 0.04537, 1)
 debug_shape_thickness = 5
 

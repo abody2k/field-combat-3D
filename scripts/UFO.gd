@@ -10,7 +10,7 @@ enum UNITS {SOLIDER,TANK,HELICOPTER,CANNON}
 var absorbObj : CharacterBody3D
 var absorbOnjPos = Vector3.ZERO
 var rocket = preload("res://scenes/rocket.tscn")
-
+var team =0
 var velo = Vector3.ZERO
 var pressingTime: float
 var currentUnit = UNITS.SOLIDER
@@ -32,7 +32,7 @@ func movement():
 	velo.x=-Input.get_axis("moveUP","moveDOWN")
 	velo.z=Input.get_axis("moveLEFT","moveRIGHT")
 	if velo != Vector3.ZERO:
-		print("Moving")
+
 #		print((pressingTime - Time.get_ticks_msec())/1000.0)
 		if ( Time.get_ticks_msec()-pressingTime)/1000.0 >= 0.5:
 			pressingTime=0
@@ -45,7 +45,7 @@ func movement():
 	move_and_slide()
 	
 func switchingUnits():
-	print("Changd color")
+
 	#Check the current index if it's the last one then move it back to 0
 	
 	if currentUnit == UNITS.HELICOPTER :
@@ -66,16 +66,18 @@ func absorbing():
 		
 		#check if there is at least one object or more at that place
 		if $checker.is_colliding():
-			print("COLLIDING")
+
 			var collidedObj=$checker.get_collider()
 			#if there is then check if they are the enemy then freeze them
-			print(collidedObj.name)
+
 			if collidedObj is CharacterBody3D:
-				print(collidedObj)
+
 				if collidedObj.name.find("En") >=0:
+					if not collidedObj.has_method("freezeMe"):
+						return
 					collidedObj.freezeMe()
 					absorbObj=collidedObj
-					print("did set location an object",absorbObj,absorbObj.position)
+
 					absorbOnjPos = absorbObj.position
 					var x = create_tween()
 					x.tween_property(absorbObj,"position",position,1)

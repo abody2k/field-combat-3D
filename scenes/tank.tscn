@@ -23,13 +23,15 @@ script = ExtResource("1_3kk3i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_n3odf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="solidoundary" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_uuwtx")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2819, 0, -5.33801)
 
 [node name="shootingTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="cannonBase" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205609, 0)
@@ -47,6 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.3615)
 [node name="enemeyDetector" type="Area3D" parent="."]
 
 [node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7446, 0)
 shape = SubResource("BoxShape3D_dnhyn")
 
 [connection signal="timeout" from="shootingTimer" to="." method="_on_shooting_timer_timeout"]

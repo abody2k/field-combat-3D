@@ -31,7 +31,7 @@ func lookForEnemies():
 func _ready():
 	choosingTeam()
 func freezeMe():
-	print("I'M SO FREEZED !")
+
 	($enemeyDetector as Area3D).monitoring=false
 	($solidoundary as CollisionShape3D).disabled=true
 	state=DISABLED
@@ -51,20 +51,23 @@ func ObjectEnteredDetectionRange(body):
 	if !((body) is CharacterBody3D) and !(body is Node3D ):
 		return
 	# Detect if the object is an  ally
-	print("Arrived here")
-	print(body.name)
 
-	if (body.name!="Enj" and body.name!="j"):
-		print("undergo")
-		if ((body.name as String).find("En") == -1 and name.find("En")==-1)or ((body.name as String).find("En") != -1 and name.find("En")!=-1 ):
+	
+	
+	if ("team" in body):
+		if team == body.team:
 			return
-	print("passed")
-	print(body.name ,name)
+			
+
+#	if (body.name!="Enj" and body.name!="j"):
+#
+#		if ((body.name as String).find("En") == -1 and name.find("En")==-1)or ((body.name as String).find("En") != -1 and name.find("En")!=-1 ):
+#			return
+
+
 	state=SEARCHING
 	target = body
-	print("Collision happened")
-	print(body.position)
-	print(position)
+
 	path=get_parent().getPositionListGivenPosition(Vector2(position.x,position.z),Vector2((body as Node3D).position.x,(body as Node3D).position.z))
 	pass # Replace with function body.
 
@@ -115,7 +118,7 @@ func onSearching(delta ):
 	
 #		print("I'm",name," and my enemy is",target.name)
 		if target.position.distance_to(position) <= shootingRange:
-			print("started shooting as a "+name)
+
 			
 			
 			state=AIMING
@@ -125,11 +128,10 @@ func onSearching(delta ):
 			if path.size()<1 :
 				return
 #			if target.name=="j":
-			#print("please note that im the bot",( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized())
+
 
 			move(delta )
-			#print(Vector2(position.x,position.z).distance_squared_to( path[0]))
-#			print(Vector2(position.x,position.z).distance_squared_to( path[0]))
+
 			if Vector2(position.x,position.z).distance_squared_to( path[0])<1:
 				path.remove_at(0)
 		pass
@@ -155,14 +157,14 @@ func onShooting():
 	pass
 
 func _on_timer_timeout():
-	print("I'm checking if the target is alright")
+
 	if !target:
 		$Timer.stop()
 		state = SEARCHING
 		
 	else:
 		path=get_parent().getPositionListGivenPosition(position,target.position)	
-		print("DISTANCE = ",Vector2(position.x,position.z).distance_to(Vector2(target.position.x,target.position.z)))
+
 		if 	Vector2(position.x,position.z).distance_to(Vector2(target.position.x,target.position.z)) <= shootingRange:
 			#shooting mode	
 			state = SHOOTING

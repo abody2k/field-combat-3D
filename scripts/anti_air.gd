@@ -72,13 +72,12 @@ func _process(delta):
 
 func _on_area_3d_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	
-	print("some object just came in")
-	print(body.name)
+
 	if body is CharacterBody3D and (body.name as String).find("En")<0 :
-		print("added the unit to targets")
+
 		#they caough us
 		targets.append(body)
-		print(targets,targets.size())
+
 		current_mode= MODES.AIMING
 		pass
 	pass # Replace with function body.

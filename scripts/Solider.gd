@@ -5,6 +5,7 @@ var rocket = preload("res://scenes/rocket.tscn")
 
 func aiming(delta : float):
 	look_at(Vector3(target.position.x,0,target.position.z))
+	attack()
 	state=SHOOTING
 	
 	pass
@@ -27,9 +28,7 @@ func onShooting():
 		state = SEARCHING
 		return
 		
-		
-	print("shooting")
-	print("Current path : ",path)
+
 	
 	pass
 
@@ -42,8 +41,7 @@ func onShooting():
 	pass
 
 func attack():
-	if not finishedAiming:
-		return
+
 		
 		
 #	if name.find("En")>=0 :
