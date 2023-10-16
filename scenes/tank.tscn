@@ -29,7 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2819, 0, -5.33801)
 [node name="shootingTimer" type="Timer" parent="."]
 
 [node name="cannonBase" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.933957, 0, 0, 0, 0.337572, 0, 0, 0, 0.535081, 0, 0.205609, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205609, 0)
 mesh = SubResource("CylinderMesh_f33l2")
 
 [node name="cannon" type="Node3D" parent="cannonBase"]

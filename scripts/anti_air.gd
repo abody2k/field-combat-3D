@@ -31,11 +31,12 @@ func aiming(delta : float =0):
 
 #	rotate(Vector3(0,1,0), 2*-PI/3)
 #	return
-	$ball.global_transform.basis = $ball.global_transform.basis.slerp(bas,delta*2)
+	$ball.global_transform.basis = $ball.global_transform.basis.slerp(bas,delta*4)
 	
 #	print(($ball.global_transform.basis.z.dot(direction.normalized())))
-	return
-	if ($ball.global_transform.basis.z.dot(direction.normalized())) >= 0.9:
+#	return
+	print(($ball.global_transform.basis.z.dot(direction.normalized())) )
+	if ($ball.global_transform.basis.z.dot(direction.normalized())) <-0.9999:
 		print("ATTACKING !!!")
 		current_mode=MODES.ATTACKING
 		attacking()

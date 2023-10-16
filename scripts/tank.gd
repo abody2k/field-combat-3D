@@ -28,13 +28,15 @@ func aiming(delta : float):
 	
 	var direction = target.global_position - $cannonBase.global_position
 #	print(target.position,target.global_position)
-#	$cannonBase.global_transform.basis = $cannonBase.global_transform.basis.slerp(Basis.looking_at(direction),delta*1)
+	#no scaling handling solution 
+	$cannonBase.global_transform.basis = $cannonBase.global_transform.basis.slerp(Basis.looking_at(direction),delta*4)
 #	print (($cannonBase.global_transform.basis as Basis).get_scale())
 
-	var myScale = $cannonBase.global_transform.basis.get_scale()
-	
-	$cannonBase.global_transform.basis = lerp(($cannonBase.global_transform.basis as Basis).orthonormalized(),Basis.looking_at(direction),delta)
-	$cannonBase.global_transform.basis=$cannonBase.global_transform.basis.scaled(myScale)
+
+	#FOR SCALING
+#	var myScale = $cannonBase.global_transform.basis.get_scale()
+#	$cannonBase.global_transform.basis = lerp(($cannonBase.global_transform.basis as Basis).orthonormalized(),Basis.looking_at(direction),delta)
+#	$cannonBase.global_transform.basis=$cannonBase.global_transform.basis.scaled(myScale)
 	
 #	print (($cannonBase.global_transform.basis as Basis).get_scale())
 	return
