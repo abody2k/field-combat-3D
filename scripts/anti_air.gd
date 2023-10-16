@@ -5,7 +5,7 @@ var targets = []
 func _ready():
 
 	pass # Replace with function body.
-enum MODES {WAITING,AIMING,ATTACKING}
+enum MODES {WAITING,AIMING,ATTACKING,RELOADING}
 var current_mode = MODES.WAITING
 
 func aiming(delta : float =0):
@@ -36,7 +36,7 @@ func aiming(delta : float =0):
 #	print(($ball.global_transform.basis.z.dot(direction.normalized())))
 #	return
 	print(($ball.global_transform.basis.z.dot(direction.normalized())) )
-	if ($ball.global_transform.basis.z.dot(direction.normalized())) <-0.9999:
+	if ($ball.global_transform.basis.z.dot(direction.normalized())) <-0.9999 and current_mode != MODES.RELOADING:
 		print("ATTACKING !!!")
 		current_mode=MODES.ATTACKING
 		attacking()
@@ -48,13 +48,13 @@ func attacking():
 	#make it go to the target
 	#restart the timer
 	var myRocket = rocket.instantiate()
-	return
-	myRocket.position = $cannon/rocketAimingPoint.global_position + Vector3(3,3,3)
+	
+	myRocket.position = $ball/ball/rocketAimingPoint.global_position 
 	myRocket.target = targets[0].position
 		
 	get_parent().add_child(myRocket)
 	(myRocket as CharacterBody3D).look_at(targets[0].position)
-	current_mode =MODES.AIMING
+	current_mode =MODES.RELOADING
 	$Timer.start()
 	
 	
@@ -63,7 +63,7 @@ func _process(delta):
 	
 
 	match current_mode :
-		MODES.AIMING:
+		MODES.AIMING,MODES.RELOADING:
 			aiming(delta)
 			pass
 	pass
@@ -92,7 +92,11 @@ func _on_area_3d_body_shape_exited(body_rid, body, body_shape_index, local_shape
 
 
 func _on_timer_timeout():
+	current_mode = MODES.AIMING
 	
+	if targets.size()<1 :
+		return
+		
 	if !is_instance_valid(targets[0]):
 		targets.remove_at(0)
 		if targets.size() <1:

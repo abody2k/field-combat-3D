@@ -34,7 +34,7 @@ speed = 5.0
 shootingRange = 5.0
 
 [node name="Enj" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.185, 0.344, 14.03)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.185, 0.344, 15.9192)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enj"]
 mesh = SubResource("SphereMesh_oc4nb")
@@ -92,11 +92,8 @@ script = ExtResource("5_wiuob")
 [node name="HTTPRequest" type="HTTPRequest" parent="Manager"]
 
 [node name="tank" parent="." instance=ExtResource("6_w4b4p")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 0, 12)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 12)
 shootingRange = 10.0
-
-[node name="Camera3D" type="Camera3D" parent="tank"]
-transform = Transform3D(1, 0, 0, 0, -0.156434, 0.987688, 0, -0.987688, -0.156434, -3, 28, 0)
 
 [node name="helicopter" parent="." instance=ExtResource("7_dd536")]
 process_mode = 4
@@ -112,3 +109,6 @@ transform = Transform3D(-0.619203, -0.714828, -0.324974, -0.755854, 0.654741, -1
 
 [node name="t" type="MeshInstance3D" parent="t"]
 mesh = SubResource("CylinderMesh_vwkd2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-2.98023e-08, -0.987688, -0.156434, -2.85469e-09, -0.156434, 0.987688, -1, 2.9882e-08, 1.84255e-09, 10, 28, 15)

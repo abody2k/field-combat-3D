@@ -23,7 +23,7 @@ mesh = SubResource("BoxMesh_023l7")
 shape = SubResource("BoxShape3D_nm6qm")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 5.0
 
 [node name="ball" type="Node3D" parent="."]
 
@@ -33,6 +33,7 @@ mesh = SubResource("BoxMesh_4mddh")
 skeleton = NodePath("../..")
 
 [node name="rocketAimingPoint" type="Node3D" parent="ball/ball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.87896, 0, 2.13266e-07)
 
 [connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area3D" to="." method="_on_area_3d_body_shape_exited"]
