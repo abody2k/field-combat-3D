@@ -30,6 +30,6 @@ func _on_body_entered(body):
 
 func _on_timer_timeout():
 	
-	get_tree().change_scene_to_file("res://scences/statistics.tscn")
+	get_tree().change_scene_to_file("res://scenes/statistics.tscn")
 	
 	pass # Replace with function body.

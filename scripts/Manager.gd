@@ -17,7 +17,7 @@ func save():
 	
 	
 func saveProgress():
-	
+	return
 	var file=FileAccess.open("user://savegame.save",FileAccess.WRITE)
 	file.store_line(JSON.stringify(save()))
 	print("Data is stored")

@@ -14,20 +14,25 @@ size = Vector3(15, 5, 15)
 script = ExtResource("1_il1gw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.66822, 0, 0, 0)
+transform = Transform3D(-1, 0, -2.33263e-07, 0, 1, 0, 8.74228e-08, 0, -2.66822, 2.12992e-08, 0, 0.487269)
 mesh = SubResource("BoxMesh_jt1ai")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.72638, 0, 0.72596, 0.974537)
+transform = Transform3D(-1, 0, -6.35022e-08, 0, 1, 0, 8.74228e-08, 0, -0.72638, -6.38976e-08, 0.72596, -0.487269)
 mesh = SubResource("BoxMesh_jt1ai")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.12992e-08, 0, 0.487269)
 shape = SubResource("BoxShape3D_o1hdj")
 
 [node name="shootingTimer" type="Timer" parent="."]
 
 [node name="enemeyDetector" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.12992e-08, -4.388, 0.487269)
 
 [node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98835, 0)
 shape = SubResource("BoxShape3D_c57ry")
+
+[node name="aim" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49883, -1.83218)

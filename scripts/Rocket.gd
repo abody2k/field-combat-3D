@@ -12,6 +12,7 @@ func _physics_process(delta):
 	
 
 	velocity=((target- position)* rocketSpeed)
+	
 	var result = null
 
 	if move_and_slide():
@@ -35,6 +36,8 @@ func _physics_process(delta):
 			
 	elif result != null:
 #		print(result)
+		queue_free()
+	if position.distance_squared_to(target) <=1 :
 		queue_free()
 
 
