@@ -176,7 +176,7 @@ func onSearching(delta ):
 
 			move(delta )
 
-			if Vector2(position.x,position.z).distance_squared_to( path[0])<1:
+			if Vector2(position.x,position.z).distance_squared_to( path[0])<=0.1:
 				path.remove_at(0)
 		pass
 #	print("searching")

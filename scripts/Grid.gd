@@ -4,6 +4,7 @@ extends Node3D
 @export var gridWidth : int =1
 @export var gridHeight : int =1
 @export var gridRectSize : Vector2i =Vector2i(1,1)
+const block = preload("res://scenes/barrier.tscn")
 var currentUFO 
 var grid = AStarGrid2D.new()
 
@@ -27,12 +28,15 @@ func get_stats():
 	return destroyedUnits	
 
 func _ready():
-
+	
 	grid.region= Rect2(position.x as int,position.y as int,gridWidth,gridHeight)
 	grid.cell_size=gridRectSize
+	grid.offset= Vector2(0.1,0.1)
+	grid.jumping_enabled=true
 	grid.update()
-	
-	grid.set_point_solid(Vector2i(3,3))	
+	generate_map()
+	grid.update()
+#	grid.set_point_solid(Vector2i(3,3))	
 
 	
 	pass
@@ -46,3 +50,26 @@ func _on_ufo_en_timeout():
 		
 		pass
 	pass # Replace with function body.
+
+
+func generate_map():
+	for child in get_children() :
+		if child is StaticBody3D and child.name.find("barrier")>=0:
+			
+			grid.set_point_solid(Vector2i(ceil(child.position.x) as int,ceil(child.position.z) as int))
+			pass
+		pass
+		
+	return
+	randomize()
+	
+	for i in range (gridWidth/10):
+		for j in range (gridHeight/10):
+			if randi()%10 ==0:
+				var barrier = block.instantiate()
+				barrier.position=Vector3(i,0,j)
+				add_child(barrier)
+				grid.set_point_solid(Vector2i(i,j))
+				
+				
+	pass

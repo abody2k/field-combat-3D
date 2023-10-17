@@ -43,7 +43,7 @@ gridWidth = 400
 gridHeight = 400
 
 [node name="Enj" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.71, 3, 43.863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8971, 0, 13.8372)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enj"]
 mesh = SubResource("SphereMesh_oc4nb")
@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
 mesh = SubResource("SphereMesh_oc4nb")
 
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 39.4045, 3, 29.2805)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 45.7061, 3, 18.8007)
 speed = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="UFO"]
@@ -123,19 +123,55 @@ wait_time = 10.0
 autostart = true
 
 [node name="barriers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23179, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4346, 1.23179, 0)
 
 [node name="barrier" parent="barriers" instance=ExtResource("11_fv8ew")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 42.2102, 0, 10.9861)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5801, 0, 20.8494)
+
+[node name="barrier8" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5801, 0, 23.9317)
+
+[node name="barrier9" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5801, 0, 26.877)
+
+[node name="barrier10" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5801, 0, 17.8356)
+
+[node name="barrier11" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5801, 0, 29.9593)
+
+[node name="barrier12" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 46.8431, 0, 33.1295)
+
+[node name="barrier13" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 49.9254, 0, 33.1295)
+
+[node name="barrier14" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 52.8707, 0, 33.1295)
+
+[node name="barrier15" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 43.8293, 0, 33.1295)
+
+[node name="barrier16" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 55.953, 0, 33.1295)
+
+[node name="barrier7" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 36.8397, 0, 10.9861)
 
 [node name="barrier2" parent="barriers" instance=ExtResource("11_fv8ew")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5303, 0, 30.3422)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8.28968, 0, 27.4353)
 
 [node name="barrier3" parent="barriers" instance=ExtResource("11_fv8ew")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 27.563, 0, 23.2666)
 
+[node name="barrier6" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 34.7159, 0, 23.2666)
+
 [node name="barrier4" parent="barriers" instance=ExtResource("11_fv8ew")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.11805, 0, 23.2666)
+
+[node name="barrier5" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13.8557, 0, 23.2666)
 
 [node name="En_UFO" parent="." instance=ExtResource("9_1oxt0")]
 process_mode = 4
@@ -144,18 +180,18 @@ radius = 4.0
 speed = 5.0
 
 [node name="Solider" parent="." instance=ExtResource("8_3d31l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5912, 0, 40.8718)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6813, 0, 32.485)
 
 [node name="Solider3" parent="." instance=ExtResource("8_3d31l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.591, 0, 43.872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6811, 0, 35.4852)
 
 [node name="Solider2" parent="." instance=ExtResource("8_3d31l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.591, 0, 40.872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6811, 0, 32.4852)
 
 [node name="tank" parent="." instance=ExtResource("9_t2eh2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0901, 0, 7.61317)
 
 [node name="helicopter" parent="." instance=ExtResource("10_golsp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 28.51)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0901, 0, 20.1232)
 
 [connection signal="timeout" from="UFO_EN" to="." method="_on_ufo_en_timeout"]
