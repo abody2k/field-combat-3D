@@ -73,7 +73,8 @@ func ObjectEnteredDetectionRange(body):
 		return
 	# Detect if the object is an  ally
 
-	
+	if body is StaticBody3D:
+		return
 	
 	if ("team" in body):
 		if team == body.team:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=20 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://scenes/solider.tscn" id="2_nib8e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drhvqdp3g7bul" path="res://scenes/anti_air.tscn" id="8_k4dj6"]
 [ext_resource type="PackedScene" uid="uid://33f4kuhiv4mw" path="res://scenes/finishingPoint.tscn" id="9_j6pp2"]
 [ext_resource type="PackedScene" uid="uid://dbgybsn8kpdg8" path="res://scenes/slow_down.tscn" id="10_w7yks"]
+[ext_resource type="PackedScene" uid="uid://gliw0bw1isl8" path="res://scenes/barrier.tscn" id="11_fv8ew"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_oc4nb"]
 
@@ -180,5 +181,20 @@ autostart = true
 
 [node name="slowDown" parent="." instance=ExtResource("10_w7yks")]
 transform = Transform3D(16.9017, 0, 0, 0, 16.9017, 0, 0, 0, 16.9017, 1.85878, 0, 28.1645)
+
+[node name="barriers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23179, 0)
+
+[node name="barrier" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 42.2102, 0, 10.9861)
+
+[node name="barrier2" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5303, 0, 30.3422)
+
+[node name="barrier3" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 27.563, 0, 23.2666)
+
+[node name="barrier4" parent="barriers" instance=ExtResource("11_fv8ew")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.11805, 0, 23.2666)
 
 [connection signal="timeout" from="UFO_EN" to="." method="_on_ufo_en_timeout"]
