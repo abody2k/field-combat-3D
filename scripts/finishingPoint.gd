@@ -12,6 +12,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	#make it a one time thing
+	monitoring=false
 	#play the winning sound
 	
 	#if it's the drone then finish the game
@@ -21,6 +23,8 @@ func _on_body_entered(body):
 		for node in get_parent().get_children():
 			if "team" in node and "target" in node:
 				node.call("disable_me")
+		
+		print(get_parent().call("get_stats"))
 			
 		$Timer.start()
 		

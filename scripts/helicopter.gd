@@ -31,7 +31,7 @@ func moveInto(delta : float ):
 	pass
 func flyAround(delta : float):
 	
-	print(fliper)
+
 	if target.position.y >=3 and fliper <3:
 		moveInto(delta)
 		return
@@ -39,7 +39,7 @@ func flyAround(delta : float):
 
 	counter += delta
 	position+= Vector3(cos(((counter))),0,sin((counter))) * radius * delta
-	print(counter - int(counter))
+
 	if counter >=2:
 		fliper=0
 		counter=0

@@ -7,6 +7,13 @@ extends Node3D
 var currentUFO 
 var grid = AStarGrid2D.new()
 
+var destroyedUnits =[]
+
+func unitDestroyed(unitName : String,team : int):
+	destroyedUnits.append({team:unitName})
+	
+	print(destroyedUnits)
+	pass
 
 func getPositionListGivenPosition(start: Vector2, end :Vector2):
 #	print(position)
@@ -16,7 +23,8 @@ func getPositionListGivenPosition(start: Vector2, end :Vector2):
 #	print(tempStart,tempEnd)
 	return grid.get_point_path(tempStart,tempEnd)
 	
-	
+func get_stats():
+	return destroyedUnits	
 
 func _ready():
 

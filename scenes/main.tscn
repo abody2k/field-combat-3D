@@ -166,7 +166,7 @@ mesh = SubResource("BoxMesh_ommyw")
 skin = SubResource("Skin_shuqs")
 
 [node name="finishingPoint" parent="." instance=ExtResource("9_j6pp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 3, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="finishingPoint"]
 material_override = SubResource("StandardMaterial3D_3eubm")

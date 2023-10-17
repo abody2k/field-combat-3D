@@ -30,7 +30,7 @@ func _physics_process(delta):
 				print("friendly fire")
 				queue_free()
 				return
-				
+			get_parent().call("unitDestroyed",result.name,result.team)
 			result.queue_free()
 			queue_free()
 			
