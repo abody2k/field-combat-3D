@@ -18,6 +18,7 @@ size = Vector3(0.5, 0.5, 4.54)
 size = Vector3(15, 3.616, 15)
 
 [node name="tank" type="CharacterBody3D"]
+collision_mask = 2
 script = ExtResource("1_3kk3i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

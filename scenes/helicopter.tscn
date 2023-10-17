@@ -11,6 +11,7 @@ size = Vector3(1, 1, 2.62302)
 size = Vector3(15, 5, 15)
 
 [node name="helicopter" type="CharacterBody3D"]
+collision_mask = 2
 script = ExtResource("1_il1gw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

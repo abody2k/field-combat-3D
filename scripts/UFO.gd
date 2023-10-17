@@ -6,7 +6,7 @@ extends CharacterBody3D
 var readyToAttack=true
 var state=IDLE
 enum {IDLE,ABSROBING}
-enum UNITS {SOLIDER,TANK,HELICOPTER,CANNON}
+enum UNITS {SOLIDER,TANK,HELICOPTER}
 var absorbObj : CharacterBody3D
 var absorbOnjPos = Vector3.ZERO
 var rocket = preload("res://scenes/rocket.tscn")
@@ -147,7 +147,9 @@ func spawning():
 		#load unit from res
 		#give it a random position
 		#
-		var unit = load("res://"+str(UNITS.keys()[currentUnit]).to_lower()+".tscn")
+		for i in UNITS.keys() :
+			print(i.to_lower())
+		var unit = load("res://scenes/"+str(UNITS.keys()[currentUnit]).to_lower()+".tscn")
 		var nunit=unit.instantiate()
 		get_parent().add_child(nunit)
 		nunit.position = get_parent().position + Vector3(1,0,0.05) * randi_range(0,10)
