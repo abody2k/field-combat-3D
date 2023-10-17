@@ -11,7 +11,7 @@ var myTeam = 0
 func _physics_process(delta):
 	
 
-	velocity=((target- position)* rocketSpeed)
+	velocity=((-basis.z)* rocketSpeed)
 	
 	var result = null
 
@@ -30,7 +30,11 @@ func _physics_process(delta):
 				print("friendly fire")
 				queue_free()
 				return
+				
 			get_parent().call("unitDestroyed",result.name,result.team)
+			if result.name.find("En_UFO")>=0: #check if it has absorbed enemy if so unfreeze them
+				result.call("unSuck")
+				pass
 			result.queue_free()
 			queue_free()
 			

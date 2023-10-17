@@ -119,6 +119,9 @@ angle_max = 720.0
 wait_time = 2.0
 one_shot = true
 
+[node name="emit" type="Node3D" parent="."]
+transform = Transform3D(-4.37115e-08, -0.5, -0.866025, 0, 0.866025, -0.5, 1, -2.18557e-08, -3.78552e-08, 0.0139021, -2.48864, 6.07677e-10)
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="timeout" from="reloading" to="." method="_on_reloading_timeout"]
 [connection signal="timeout" from="emiting" to="." method="_on_emiting_timeout"]

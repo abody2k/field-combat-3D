@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://sgvo875warf7"]
+
+[ext_resource type="Script" path="res://scenes/en_ufo.gd" id="1_cw45l"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_w501w"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bsut7"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.0146517, 0.470697, 0.470697, 0.0735213, 0.352957, 0.47061, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.0146517, 0.470697, -0.470697, 0.5, -0.5, 0.5, -0.0146517, 0.470697, 0.470697, 0.0146517, 0.470697, -0.470697)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_04s1x"]
+size = Vector3(9.76646, 3, 11.52)
+
+[node name="En_UFO" type="CharacterBody3D"]
+script = ExtResource("1_cw45l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_w501w")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_bsut7")
+
+[node name="detector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57176, 0)
+shape = SubResource("BoxShape3D_04s1x")
+
+[node name="shooter" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="aim" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19801, 1.51517)
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="timeout" from="shooter" to="." method="_on_shooter_timeout"]

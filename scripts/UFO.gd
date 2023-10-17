@@ -35,10 +35,20 @@ func _ready():
 	
 func attacking():
 	if Input.is_action_just_pressed("attack") and readyToAttack:
-		var tempRocket = rocket.instantiate()
-		tempRocket.target=$target.global_position
-		tempRocket.position = position + Vector3.DOWN * 3
-		get_parent().add_child(tempRocket)
+		var arr =[]
+		for i in range(2) :
+			var tempRocket = rocket.instantiate()
+			tempRocket.target=$target.global_position
+			tempRocket.position = $emit.global_position
+			arr.append(tempRocket)
+		
+			tempRocket.rotation = $emit.rotation
+		get_parent().add_child(arr[0])
+		arr[1].rotation_degrees.x=0
+		
+		get_parent().add_child(arr[1])
+		
+#		tempRocket.look_at($checker.target_position+position,Vector3.UP,true)
 		readyToAttack=false
 		$reloading.start()
 			

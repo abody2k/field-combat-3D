@@ -6,12 +6,13 @@ extends CharacterBody3D
 @export var speed : float = 10.0
 var tempSpeed=0.0
 @export var shootingRange : float = 20.0
-enum  {SEARCHING,AIMING, SHOOTING,DISABLED}
+enum  {SEARCHING,AIMING, SHOOTING,RETREATING,DISABLED}
 enum  TEAM {BLUE,RED}
 var team
 var path : PackedVector2Array
 var state = 0
 var finishedAiming : bool = false
+var freezed = false
 ## a function that makes the unit goes to the winner new side
 func disable_me():
 	($enemeyDetector as Area3D).monitoring = false
@@ -52,20 +53,27 @@ func lookForEnemies():
 func _ready():
 	choosingTeam()
 func freezeMe():
-
+	freezed=true
 	($enemeyDetector as Area3D).monitoring=false
 	($solidoundary as CollisionShape3D).disabled=true
 	state=DISABLED
 #	process_mode=Node.PROCESS_MODE_DISABLED
 	
 func unFreezeMe():
+	print("IM BEING UNREEZED")
+	freezed=false
 	state=SEARCHING
+	target=null
 	($enemeyDetector as Area3D).monitoring=true
 	($solidoundary as CollisionShape3D).disabled=false
+	position = Vector3(position.x,0,position.z)
 #	process_mode = PROCESS_MODE_PAUSABLE
 	
 
 func ObjectEnteredDetectionRange(body):
+	if freezed:
+		return
+		
 	if state == DISABLED:
 		return
 	# Detect if the object is a real thing or not 
@@ -86,7 +94,8 @@ func ObjectEnteredDetectionRange(body):
 #		if ((body.name as String).find("En") == -1 and name.find("En")==-1)or ((body.name as String).find("En") != -1 and name.find("En")!=-1 ):
 #			return
 
-
+	if state == DISABLED:
+		return
 	state=SEARCHING
 	target = body
 
@@ -110,7 +119,7 @@ func _physics_process(delta):
 	match state:
 		
 		DISABLED:
-			pass
+			return
 		AIMING:
 			flyAround(delta)
 			aiming(delta)
@@ -120,6 +129,14 @@ func _physics_process(delta):
 		SEARCHING:
 		# WRITE SEARCHING SCRIPT
 			onSearching(delta)
+		
+		RETREATING:
+			#make it go home
+			look_at(Vector3(get_parent().get_node("finishingPoint").position.x,position.y,get_parent().get_node("finishingPoint").position.z))
+			velocity = (-basis.z) 
+			move_and_slide()
+			
+			pass
 		
 		
 			pass

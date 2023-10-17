@@ -66,7 +66,9 @@ func attack():
 	myRocket.target = target.position
 	myRocket.myTeam = team
 	myRocket.rocketSpeed = 10
+	
 	get_parent().add_child(myRocket)
+	myRocket.look_at(target.position)
 	(myRocket as CharacterBody3D).look_at(target.position)
 	state = SEARCHING	
 	pass

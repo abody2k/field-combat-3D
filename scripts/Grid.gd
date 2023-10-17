@@ -28,7 +28,7 @@ func get_stats():
 
 func _ready():
 
-	grid.size= Vector2i(gridWidth,gridHeight)
+	grid.region= Rect2(position.x as int,position.y as int,gridWidth,gridHeight)
 	grid.cell_size=gridRectSize
 	grid.update()
 	

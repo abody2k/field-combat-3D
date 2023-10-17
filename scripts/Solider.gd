@@ -10,6 +10,9 @@ func aiming(delta : float):
 	
 	pass
 func move(delta : float =0):
+		if state == DISABLED or freezed:
+			return
+		
 		velocity =( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized() * speed
 		move_and_slide()
 		
@@ -19,7 +22,9 @@ func move(delta : float =0):
 	
 	
 func onShooting():
-	
+	if state== DISABLED :
+		return
+		
 	if !target:
 		state= SEARCHING
 		return
@@ -69,8 +74,9 @@ func attack():
 		myRocket.myTeam = team
 		
 		get_parent().add_child(myRocket)
+		myRocket.look_at(target.position)
 #		print(target)
-		(myRocket as CharacterBody3D).look_at(target.position)
+#		(myRocket as CharacterBody3D).look_at(target.position)
 		
 		pass
 	if target.position.distance_to(position) <= shootingRange:

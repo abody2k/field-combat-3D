@@ -1,20 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bys1lejdoq5rq"]
-
-[ext_resource type="PackedScene" uid="uid://drhvqdp3g7bul" path="res://scenes/anti_air.tscn" id="1_6nt45"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_e0x7i"]
+[gd_scene format=3 uid="uid://bys1lejdoq5rq"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="anti_air" parent="." instance=ExtResource("1_6nt45")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0654054, 0, -0.707957)
-
-[node name="ball" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1423, -6.7094, 16.1463)
-mesh = SubResource("SphereMesh_e0x7i")
+[node name="j" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.73825)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 7.07624e-08, 0.58722, 0.809427, -5.13364e-08, 0.809427, -0.58722, -24.423, 28.495, -21.987)
+transform = Transform3D(-1, 0, 8.74228e-08, 7.07624e-08, 0.58722, 0.809427, -5.13364e-08, 0.809427, -0.58722, -16.423, 19.495, -21.987)
 fov = 69.1618
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
