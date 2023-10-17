@@ -7,14 +7,16 @@ func aiming(delta : float):
 	look_at(Vector3(target.position.x,0,target.position.z))
 	attack()
 	state=SHOOTING
+
 	
 	pass
 func move(delta : float =0):
-		if state == DISABLED or freezed:
-			return
+
+	if state == DISABLED or freezed:
+		return
 		
-		velocity =( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized() * speed
-		move_and_slide()
+	velocity =( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized() * speed
+	move_and_slide()
 		
 #checks if there is a player or not,if there is and in range it attacks if not it moves
 #towards it and if there is no player it looks for the final point to go to
@@ -59,7 +61,7 @@ func attack():
 		state=SEARCHING
 		return
 	
-	
+
 	if target and target is CharacterBody3D:
 		#shoot
 		#create rocket

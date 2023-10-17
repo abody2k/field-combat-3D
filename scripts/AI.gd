@@ -71,11 +71,13 @@ func unFreezeMe():
 	
 
 func ObjectEnteredDetectionRange(body):
+
 	if freezed:
 		return
-		
+	
 	if state == DISABLED:
 		return
+
 	# Detect if the object is a real thing or not 
 	if !((body) is CharacterBody3D) and !(body is Node3D ):
 		return
@@ -117,16 +119,19 @@ func _physics_process(delta):
 
 
 	match state:
+
 		
 		DISABLED:
 			return
 		AIMING:
+
 			flyAround(delta)
 			aiming(delta)
 #		#WRITE SHOOTING SCRIPT
 #			onShooting()
 #			pass
 		SEARCHING:
+
 		# WRITE SEARCHING SCRIPT
 			onSearching(delta)
 		
@@ -154,11 +159,11 @@ func onSearching(delta ):
 	
 #	print("Searching")
 	if is_instance_valid(target) :
-	
+
 #		print("I'm",name," and my enemy is",target.name)
 		if target.position.distance_to(position) <= shootingRange:
 
-			
+#			print("trying something NEW")	
 			
 			state=AIMING
 			

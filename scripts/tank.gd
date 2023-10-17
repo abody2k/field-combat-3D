@@ -72,6 +72,8 @@ func attack():
 	#create rocket
 	#make it go to the target
 	#restart the timer
+	if not target or not target  is CharacterBody3D:
+		return
 	var myRocket = rocket.instantiate()
 	
 	myRocket.position = $cannonBase/cannon/target.global_position 

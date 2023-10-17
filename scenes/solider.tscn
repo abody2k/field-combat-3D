@@ -11,6 +11,7 @@ size = Vector3(15, 5, 15)
 
 [node name="Solider" type="CharacterBody3D"]
 script = ExtResource("1_m6nsw")
+shootingRange = 5.0
 
 [node name="enemeyDetector" type="Area3D" parent="."]
 
