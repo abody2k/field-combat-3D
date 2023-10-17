@@ -60,7 +60,7 @@ func freezeMe():
 #	process_mode=Node.PROCESS_MODE_DISABLED
 	
 func unFreezeMe():
-	print("IM BEING UNREEZED")
+
 	freezed=false
 	state=SEARCHING
 	target=null
@@ -85,7 +85,7 @@ func ObjectEnteredDetectionRange(body):
 
 	if body is StaticBody3D:
 		return
-	
+	print("trying to do something as "+ name)
 	if ("team" in body):
 		if team == body.team:
 			return
@@ -95,11 +95,12 @@ func ObjectEnteredDetectionRange(body):
 #
 #		if ((body.name as String).find("En") == -1 and name.find("En")==-1)or ((body.name as String).find("En") != -1 and name.find("En")!=-1 ):
 #			return
-
+	print("I'm "+name +" trying to attack "+body.name)
 	if state == DISABLED:
 		return
 	state=SEARCHING
 	target = body
+
 
 	path=get_parent().getPositionListGivenPosition(Vector2(position.x,position.z),Vector2((body as Node3D).position.x,(body as Node3D).position.z))
 	pass # Replace with function body.

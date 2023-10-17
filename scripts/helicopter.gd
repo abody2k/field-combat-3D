@@ -3,13 +3,14 @@ extends "res://scripts/AI.gd"
 var counter : float =0.0
 @export var radius : float =1.0
 var forward : Vector3 = Vector3.UP * -100
-@export var temporal = 0.0
+
 var switched=false
 const DIAGNOAL : float = 7.0
 var fliper =0
 const rocket = preload("res://scenes/rocket.tscn")
 ##moves toward an object
 func moveInto(delta : float ):
+
 	look_at(Vector3(target.position.x,3,target.position.z))
 	if switched:
 		if position.distance_squared_to(target.position+ Vector3(DIAGNOAL,0,DIAGNOAL)) < 1 :
@@ -30,11 +31,14 @@ func moveInto(delta : float ):
 	
 	pass
 func flyAround(delta : float):
-	
+	if not is_instance_valid(target):
+		state= SEARCHING
+		return
 
 	if target.position.y >=3 and fliper <3:
 		moveInto(delta)
 		return
+	
 	look_at(Vector3(target.position.x,3,target.position.z))		
 
 	counter += delta
@@ -44,14 +48,14 @@ func flyAround(delta : float):
 		fliper=0
 		counter=0
 		switched=false
-		print("reseted fliper")
+
 		attack()
 
 	# if the target is not on ground then move directly into them
 
 func move(delta : float=0):
 
-	velocity = speed * (target.position-position)
+	velocity = speed * (-basis.z)
 	look_at(Vector3(target.position.x,3,target.position.z))
 	move_and_slide()
 	pass
@@ -74,3 +78,7 @@ func attack():
 	(myRocket as CharacterBody3D).look_at(target.position)
 	state = SEARCHING	
 	pass
+
+
+func _on_enemey_detector_body_entered(body):
+	ObjectEnteredDetectionRange(body)

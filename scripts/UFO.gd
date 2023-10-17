@@ -147,8 +147,7 @@ func spawning():
 		#load unit from res
 		#give it a random position
 		#
-		for i in UNITS.keys() :
-			print(i.to_lower())
+		
 		var unit = load("res://scenes/"+str(UNITS.keys()[currentUnit]).to_lower()+".tscn")
 		var nunit=unit.instantiate()
 		get_parent().add_child(nunit)

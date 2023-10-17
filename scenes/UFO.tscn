@@ -67,6 +67,7 @@ metallic_specular = 1.0
 
 [node name="UFO" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0, 0)
+collision_mask = 2
 script = ExtResource("1_gyoq5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

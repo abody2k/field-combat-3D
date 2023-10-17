@@ -15,6 +15,7 @@ script = ExtResource("1_m6nsw")
 shootingRange = 5.0
 
 [node name="enemeyDetector" type="Area3D" parent="."]
+collision_mask = 7
 
 [node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98835, 0)

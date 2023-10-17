@@ -9,6 +9,9 @@ var firing = false
 var absorbing =false
 const rocket = preload("res://scenes/rocket.tscn")
 func attack():
+	
+	if not is_instance_valid(target):
+		return
 	var myRocket = rocket.instantiate()
 	
 	myRocket.position = $aim.global_position 
@@ -58,7 +61,8 @@ func absorb():
 
 func goAbsorb(delta : float):
 	print('trying to absrob')
-	velocity =( Vector3(target2.position.x,position.y,target2.position.z)- position )* speed
+	look_at(Vector3(target2.position.x,position.y,target2.position.z))
+	velocity =( basis.z )* speed
 	move_and_slide()
 	print( position.distance_squared_to( Vector3(target2.position.x,position.y,target2.position.z)))
 	if position.distance_squared_to( Vector3(target2.position.x,position.y,target2.position.z))<=1 :
@@ -102,8 +106,13 @@ func _on_detector_body_entered(body):
 	#if enemy check if we already have target if so then go towards it and suck it
 
 	print(body.name)
+	print("IM UFO EN")
 	if "team" in body :
 		if body.team == team:
+			print('cant absrob my team or attack a flying objects')
+			return
+		if body.position.y>1 :
+			target=body
 			return
 			
 		elif is_instance_valid(target) and target != null and target2 == null and body != target:

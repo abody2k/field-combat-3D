@@ -5,6 +5,7 @@ extends Node3D
 @export var gridHeight : int =1
 @export var gridRectSize : Vector2i =Vector2i(1,1)
 const block = preload("res://scenes/barrier.tscn")
+const UFO = preload("res://scenes/en_ufo.tscn")
 var currentUFO 
 var grid = AStarGrid2D.new()
 
@@ -47,7 +48,10 @@ func _on_ufo_en_timeout():
 	#create a UFO and send it
 	if not is_instance_valid(currentUFO):
 		#make a new UFO
-		
+		currentUFO = UFO.instantiate()
+		currentUFO.position = $finishingPoint.position- Vector3(10,-3,10)
+		currentUFO.name+="_En_UFO"
+		add_child(currentUFO)
 		pass
 	pass # Replace with function body.
 

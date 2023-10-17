@@ -8,11 +8,12 @@
 size = Vector3(1, 1, 2.62302)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c57ry"]
-size = Vector3(15, 5, 15)
+size = Vector3(15, 7.13225, 15)
 
 [node name="helicopter" type="CharacterBody3D"]
 collision_mask = 2
 script = ExtResource("1_il1gw")
+radius = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -2.33263e-07, 0, 1, 0, 8.74228e-08, 0, -2.66822, 2.12992e-08, 0, 0.487269)
@@ -22,7 +23,7 @@ mesh = SubResource("BoxMesh_jt1ai")
 transform = Transform3D(-1, 0, -6.35022e-08, 0, 1, 0, 8.74228e-08, 0, -0.72638, -6.38976e-08, 0.72596, -0.487269)
 mesh = SubResource("BoxMesh_jt1ai")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="solidoundary" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.12992e-08, 0, 0.487269)
 shape = SubResource("BoxShape3D_o1hdj")
 
@@ -32,8 +33,10 @@ shape = SubResource("BoxShape3D_o1hdj")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.12992e-08, -4.388, 0.487269)
 
 [node name="boundary" type="CollisionShape3D" parent="enemeyDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98835, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02576, 0)
 shape = SubResource("BoxShape3D_c57ry")
 
 [node name="aim" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49883, -1.83218)
+
+[connection signal="body_entered" from="enemeyDetector" to="." method="_on_enemey_detector_body_entered"]
