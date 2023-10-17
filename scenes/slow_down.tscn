@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbgybsn8kpdg8"]
+
+[ext_resource type="Script" path="res://scripts/slowDown.gd" id="1_5ypr4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7tiu"]
+size = Vector3(2.89636, 1, 1.76366)
+
+[node name="slowDown" type="Area3D"]
+script = ExtResource("1_5ypr4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t7tiu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

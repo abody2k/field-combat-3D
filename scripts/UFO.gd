@@ -14,6 +14,21 @@ var team =0
 var velo = Vector3.ZERO
 var pressingTime: float
 var currentUnit = UNITS.SOLIDER
+var tempSpeed : float = 0.0
+
+func slowMeDown():
+	tempSpeed = speed
+	speed = speed/2
+	pass
+	
+func moveFaster():
+	
+	speed = tempSpeed
+
+
+
+
+
 func _ready():
 	$AnimationPlayer.play("rotation")
 	pass

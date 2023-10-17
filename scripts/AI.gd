@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var target : Node3D
 @export var forwardDirection : Vector3
 @export var speed : float = 10.0
+var tempSpeed=0.0
 @export var shootingRange : float = 20.0
 enum  {SEARCHING,AIMING, SHOOTING,DISABLED}
 enum  TEAM {BLUE,RED}
@@ -19,6 +20,18 @@ func disable_me():
 	x.position=get_parent().get_node("finishingPoint").position + Vector3( randf_range(20,70),0,randf_range(20,70))
 	target = x
 	pass
+	
+
+
+	
+func slowMeDown():
+	tempSpeed = speed
+	speed = speed/2
+	pass
+	
+func moveFaster():
+	
+	speed = tempSpeed
 ##used by flying objects
 func choosingTeam():
 	
