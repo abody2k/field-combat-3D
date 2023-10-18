@@ -7,12 +7,14 @@ var target : Vector3
 #attack only enemy
 var myTeam = 0
 #Write down the rocket forumla
-
+func _ready():
+	$CPUParticles3D.gravity=basis.z
+	pass
 func _physics_process(delta):
 	
 
 	velocity=((-basis.z)* rocketSpeed)
-	
+	rotate_z(deg_to_rad(delta))
 	var result = null
 
 	if move_and_slide():
