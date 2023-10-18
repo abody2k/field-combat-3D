@@ -30,7 +30,7 @@ func moveFaster():
 
 
 func _ready():
-	$AnimationPlayer.play("rotation")
+	$AnimationPlayer.play("RESET")
 	pass
 	
 func attacking():
@@ -148,10 +148,11 @@ func spawning():
 		#give it a random position
 		#
 		
-		var unit = load("res://scenes/"+str(UNITS.keys()[currentUnit]).to_lower()+".tscn")
+		var unit = load("res://scenes/"+str(UNITS.keys()[2]).to_lower()+".tscn")
 		var nunit=unit.instantiate()
 		get_parent().add_child(nunit)
-		nunit.position = get_parent().position + Vector3(1,0,0.05) * randi_range(0,10)
+		nunit.team=0
+		nunit.position = get_parent().position + Vector3(30,0,30) * randi_range(1,3)
 		
 		
 		

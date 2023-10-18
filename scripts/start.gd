@@ -16,7 +16,7 @@ func _ready():
 		var json = JSON.new()
 		json.parse(file.get_line())
 		
-		print("your name is ", json.get_data()["username"])
+
 	pass # Replace with function body.
 
 

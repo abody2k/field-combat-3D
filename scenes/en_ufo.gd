@@ -60,7 +60,8 @@ func absorb():
 	pass
 
 func goAbsorb(delta : float):
-
+	if not is_instance_valid(target2):
+		return
 	look_at(Vector3(target2.position.x,position.y,target2.position.z))
 	velocity =( basis.z )* speed
 	move_and_slide()

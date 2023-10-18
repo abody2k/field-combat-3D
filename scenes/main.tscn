@@ -51,11 +51,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 mesh = SubResource("SphereMesh_oc4nb")
 
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 45.7061, 3, 18.8007)
+transform = Transform3D(-7, 0, -1.77463e-05, 0, 7, 0, 1.77463e-05, 0, -7, 45.7061, 3, 18.8007)
 speed = 15.0
 
 [node name="Camera3D" type="Camera3D" parent="UFO"]
-transform = Transform3D(-0.0471064, -0.453486, 0.890017, 0, 0.891006, 0.45399, -0.99889, 0.0213858, -0.0419721, 1, 1, 0)
+transform = Transform3D(-0.0471064, -0.693887, 0.718541, 0, 0.719339, 0.694658, -0.99889, 0.0327228, -0.0338855, 4, 4, 0)
 current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

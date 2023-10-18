@@ -22,7 +22,7 @@ func _physics_process(delta):
 		#result.get_collider()
 	if result is CharacterBody3D :
 
-		print(result.name)
+
 
 		if result.name.find("Rocket")>=0:
 			
@@ -32,7 +32,7 @@ func _physics_process(delta):
 #				print("friendly fire")
 				queue_free()
 				return
-			print(result.name)
+
 			get_parent().call("unitDestroyed",result.name,result.team)
 			if result.name.find("En_UFO")>=0: #check if it has absorbed enemy if so unfreeze them
 				result.call("unSuck")

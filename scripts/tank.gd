@@ -5,7 +5,7 @@ const SPEED = 10
 var timer=0
 ##the tank movement is different because it needs to go in a circular path if it wants to rotate
 var firstDeg : Basis = Basis()
-const CANNON_ROTATION_TRESHOLD=0.9
+const CANNON_ROTATION_TRESHOLD=0.05
 const rocket = preload("res://scenes/rocket.tscn")
 var finishedReloading=true
 	
@@ -36,15 +36,25 @@ func aiming(delta : float):
 	var direction = target.global_position - $cannonBase.global_position
 #	print(target.position,target.global_position)
 	#no scaling handling solution 
-	$cannonBase.global_transform.basis = $cannonBase.global_transform.basis.slerp(Basis.looking_at(direction),delta*7)
+#	$cannonBase.global_transform.basis = lerp ($cannonBase.global_transform.basis.orthonormalized(),Basis.looking_at(direction),delta * 7)
+	$cannonBase.look_at(target.global_position)
+#	$cannonBase.global_transform.basis.slerp(Basis.looking_at(direction).orthonormalized(),delta*7)
 #	print (($cannonBase.global_transform.basis as Basis).get_scale())
 	
+	#angles approach
+#	var angles = $cannonBase.glob
 	
+#	look_at()
+#	var angles=$cannonBase.global_rotation.angle_to(target.position)
+#	print($cannonBase.global_rotation.angle_to(target.position))
+#
 
 	#FOR SCALING
+	
 #	var myScale = $cannonBase.global_transform.basis.get_scale()
-#	$cannonBase.global_transform.basis = lerp(($cannonBase.global_transform.basis as Basis).orthonormalized(),Basis.looking_at(direction),delta)
+#	$cannonBase.global_transform.basis = lerp(($cannonBase.global_transform.basis as Basis).orthonormalized(),Basis.looking_at(direction),delta*7)
 #	$cannonBase.global_transform.basis=$cannonBase.global_transform.basis.scaled(myScale)
+	
 	
 #	print (($cannonBase.global_transform.basis as Basis).get_scale())
 #	return
@@ -55,7 +65,8 @@ func aiming(delta : float):
 	#dot product gives us a check if an object is looking at another one, using a threshold like 0.9 means they
 	#are looking at each other directly 
 #	print(($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.global_transform.basis.z))
-	if ($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.global_transform.basis.z) >=CANNON_ROTATION_TRESHOLD and finishedReloading:
+#	print(($cannonBase/cannon.global_position-target.position).normalized().dot($cannonBase/cannon.global_transform.basis.z))
+	if  finishedReloading:
 
 		
 		finishedReloading=false

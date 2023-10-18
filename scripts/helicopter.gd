@@ -34,7 +34,9 @@ func flyAround(delta : float):
 	if not is_instance_valid(target):
 		state= SEARCHING
 		return
-
+	moveInto(delta)
+	return
+	
 	if target.position.y >=3 and fliper <3:
 		moveInto(delta)
 		return

@@ -87,7 +87,8 @@ func generate_map():
 
 func makeNewUnit():
 	
-	var unit = load("res://scenes/"+UNITS.keys()[randi_range(0,2)].to_lower()+".tscn")
+#	var unit = load("res://scenes/"+UNITS.keys()[randi_range(0,2)].to_lower()+".tscn")
+	var unit = load("res://scenes/tank.tscn")
 	var createdUnit = unit.instantiate()
 
 	
