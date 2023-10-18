@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 const rocket = preload("res://scenes/rocket.tscn")
 var targets = []
 # Called when the node enters the scene tree for the first time.

@@ -9,6 +9,10 @@ const CANNON_ROTATION_TRESHOLD=0.05
 const rocket = preload("res://scenes/rocket.tscn")
 var finishedReloading=true
 	
+func makeMeRed():
+	(($Cube_004 as MeshInstance3D).mesh.surface_get_material(1) as Material).albedo_color = Color.RED
+	$cannonBase/cannonBase.mesh.surface_get_material(1).albedo_color = Color.RED
+	$cannonBase/cannon.mesh.surface_get_material(0).albedo_color = Color.RED	
 #	target = get_parent_node_3d().get_node("target")
 ##function that is used for aiming
 func aiming(delta : float):

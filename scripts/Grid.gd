@@ -14,7 +14,7 @@ var destroyedUnits =[]
 ##called whenever a unit is destroyed
 func unitDestroyed(unitName : String,team : int):
 	destroyedUnits.append({team:unitName})
-	makeNewUnit()
+	current-=1
 	
 	#calls the AI to check
 	pass
@@ -84,11 +84,14 @@ func generate_map():
 
 
 
-
+var maximum = 5
+var current =0
 func makeNewUnit():
-	
-#	var unit = load("res://scenes/"+UNITS.keys()[randi_range(0,2)].to_lower()+".tscn")
-	var unit = load("res://scenes/tank.tscn")
+	if current < maximum:
+		current+=1
+		
+	var unit = load("res://scenes/"+UNITS.keys()[randi_range(0,2)].to_lower()+".tscn")
+#	var unit = load("res://scenes/tank.tscn")
 	var createdUnit = unit.instantiate()
 
 	
@@ -96,6 +99,7 @@ func makeNewUnit():
 	createdUnit.name+="_En"
 	createdUnit.position = $finishingPoint.position + Vector3(0,0,randf_range(-20,20))
 	createdUnit.team =1	
+	createdUnit.makeMeRed()
 	pass
 
 

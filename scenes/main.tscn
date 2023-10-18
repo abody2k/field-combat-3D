@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=16 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://b1ega158uiio7" path="res://scenes/UFO.tscn" id="3_nga5r"]
 [ext_resource type="Texture2D" uid="uid://dgrbl430f5x0s" path="res://icon.svg" id="4_iagxj"]
 [ext_resource type="Script" path="res://scripts/Manager.gd" id="5_wiuob"]
+[ext_resource type="PackedScene" uid="uid://drhvqdp3g7bul" path="res://scenes/anti_air.tscn" id="7_vlpoq"]
 [ext_resource type="PackedScene" uid="uid://33f4kuhiv4mw" path="res://scenes/finishingPoint.tscn" id="9_j6pp2"]
 [ext_resource type="PackedScene" uid="uid://gliw0bw1isl8" path="res://scenes/barrier.tscn" id="11_fv8ew"]
 
@@ -173,6 +174,21 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13.8557, 0, 23.2666)
 [node name="unitsCreator" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="anti_air_En" parent="." instance=ExtResource("7_vlpoq")]
+transform = Transform3D(0.118595, 0, 0.992943, 0, 1, 0, -0.992943, 0, 0.118595, 100, 0, 50)
+
+[node name="anti_air_En2" parent="." instance=ExtResource("7_vlpoq")]
+transform = Transform3D(0.118595, 0, 0.992943, 0, 1, 0, -0.992943, 0, 0.118595, 100, 0, 36.4374)
+
+[node name="anti_air_En3" parent="." instance=ExtResource("7_vlpoq")]
+transform = Transform3D(0.118595, 0, 0.992943, 0, 1, 0, -0.992943, 0, 0.118595, 100, 0, 65.3693)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_energy = 5.975
+light_indirect_energy = 7.588
+light_volumetric_fog_energy = 1.425
+light_angular_distance = 15.88
 
 [connection signal="timeout" from="UFO_EN" to="." method="_on_ufo_en_timeout"]
 [connection signal="timeout" from="unitsCreator" to="." method="_on_units_creator_timeout"]

@@ -79,6 +79,7 @@ radial_segments = 6
 rings = 2
 
 [node name="Rocket" type="CharacterBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_wieko")

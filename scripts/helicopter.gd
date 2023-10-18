@@ -9,6 +9,12 @@ const DIAGNOAL : float = 7.0
 var fliper =0
 const rocket = preload("res://scenes/rocket.tscn")
 ##moves toward an object
+
+
+func makeMeRed():
+	(($Cube as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
+	(($Cube/Cube_002 as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
+	
 func moveInto(delta : float ):
 
 	look_at(Vector3(target.position.x,3,target.position.z))

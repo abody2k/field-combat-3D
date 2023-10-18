@@ -10,6 +10,9 @@ func aiming(delta : float):
 	look_at(Vector3(target.position.x,0,target.position.z))
 	attack()
 	state=SHOOTING
+	
+func makeMeRed():
+	(($Armature_001/Skeleton3D/Cube as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
 
 	
 	pass
