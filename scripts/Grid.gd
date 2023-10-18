@@ -6,15 +6,17 @@ extends Node3D
 @export var gridRectSize : Vector2i =Vector2i(1,1)
 const block = preload("res://scenes/barrier.tscn")
 const UFO = preload("res://scenes/en_ufo.tscn")
+enum UNITS {SOLIDER,TANK,HELICOPTER}
 var currentUFO 
 var grid = AStarGrid2D.new()
 
 var destroyedUnits =[]
-
+##called whenever a unit is destroyed
 func unitDestroyed(unitName : String,team : int):
 	destroyedUnits.append({team:unitName})
+	makeNewUnit()
 	
-	print(destroyedUnits)
+	#calls the AI to check
 	pass
 
 func getPositionListGivenPosition(start: Vector2, end :Vector2):
@@ -49,9 +51,11 @@ func _on_ufo_en_timeout():
 	if not is_instance_valid(currentUFO):
 		#make a new UFO
 		currentUFO = UFO.instantiate()
+		add_child(currentUFO)
 		currentUFO.position = $finishingPoint.position- Vector3(10,-3,10)
 		currentUFO.name+="_En_UFO"
-		add_child(currentUFO)
+		currentUFO.team=1
+		
 		pass
 	pass # Replace with function body.
 
@@ -77,3 +81,23 @@ func generate_map():
 				
 				
 	pass
+
+
+
+
+func makeNewUnit():
+	
+	var unit = load("res://scenes/"+UNITS.keys()[randi_range(0,2)].to_lower()+".tscn")
+	var createdUnit = unit.instantiate()
+
+	
+	add_child(createdUnit)
+	createdUnit.name+="_En"
+	createdUnit.position = $finishingPoint.position + Vector3(0,0,randf_range(-20,20))
+	createdUnit.team =1	
+	pass
+
+
+func _on_units_creator_timeout():
+	makeNewUnit()
+	pass # Replace with function body.

@@ -26,7 +26,7 @@ func attack():
 	
 	
 func unSuck():
-	print(target2)
+
 	if target2 == null or not absorbing:
 		return
 	
@@ -60,11 +60,11 @@ func absorb():
 	pass
 
 func goAbsorb(delta : float):
-	print('trying to absrob')
+
 	look_at(Vector3(target2.position.x,position.y,target2.position.z))
 	velocity =( basis.z )* speed
 	move_and_slide()
-	print( position.distance_squared_to( Vector3(target2.position.x,position.y,target2.position.z)))
+
 	if position.distance_squared_to( Vector3(target2.position.x,position.y,target2.position.z))<=1 :
 		state=SHOOTING
 		absorb()
@@ -105,11 +105,10 @@ func _on_detector_body_entered(body):
 	#avoid allies
 	#if enemy check if we already have target if so then go towards it and suck it
 
-	print(body.name)
-	print("IM UFO EN")
+
 	if "team" in body :
 		if body.team == team:
-			print('cant absrob my team or attack a flying objects')
+
 			return
 		if body.position.y>1 :
 			target=body

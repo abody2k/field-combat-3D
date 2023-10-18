@@ -13,9 +13,14 @@ var path : PackedVector2Array
 var state = 0
 var finishedAiming : bool = false
 var freezed = false
+var numOfUnits : int=0
+@export var maximumNumOfUnits: int =10
 ## a function that makes the unit goes to the winner new side
 func disable_me():
-	($enemeyDetector as Area3D).monitoring = false
+	if has_node("enemeyDetector"):
+		($enemeyDetector as Area3D).monitoring = false
+	else :
+		($detector as Area3D).monitoring = false
 	var x = Node3D.new()
 	get_parent().add_child(x)
 	x.position=get_parent().get_node("finishingPoint").position + Vector3( randf_range(20,70),0,randf_range(20,70))
@@ -50,8 +55,8 @@ func lookForEnemies():
 	move_and_slide()
 	pass
 
-func _ready():
-	choosingTeam()
+#func _ready():
+##	choosingTeam()
 func freezeMe():
 	freezed=true
 	($enemeyDetector as Area3D).monitoring=false
@@ -85,7 +90,7 @@ func ObjectEnteredDetectionRange(body):
 
 	if body is StaticBody3D:
 		return
-	print("trying to do something as "+ name)
+
 	if ("team" in body):
 		if team == body.team:
 			return
@@ -95,7 +100,7 @@ func ObjectEnteredDetectionRange(body):
 #
 #		if ((body.name as String).find("En") == -1 and name.find("En")==-1)or ((body.name as String).find("En") != -1 and name.find("En")!=-1 ):
 #			return
-	print("I'm "+name +" trying to attack "+body.name)
+
 	if state == DISABLED:
 		return
 	state=SEARCHING
@@ -158,13 +163,13 @@ func attack():
 func onSearching(delta ):
 	
 	
-#	print("Searching")
+
 	if is_instance_valid(target) :
 
-#		print("I'm",name," and my enemy is",target.name)
+
 		if target.position.distance_to(position) <= shootingRange:
 
-#			print("trying something NEW")	
+
 			
 			state=AIMING
 			
@@ -180,17 +185,17 @@ func onSearching(delta ):
 			if Vector2(position.x,position.z).distance_squared_to( path[0])<=0.1:
 				path.remove_at(0)
 		pass
-#	print("searching")
+
 	else :
-#		print("ENrolled here")
+
 
 		if name.find("En")>=0:
-#			print("I tired doing it as a bot")
+
 			var obj=get_parent().get_node("j")
 			addFind(obj)
 
 			ObjectEnteredDetectionRange(obj)
-#			print(path)
+
 		else:
 			var obj=get_parent().get_node("Enj")
 			addFind(obj)

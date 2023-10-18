@@ -4,6 +4,9 @@ extends "res://scripts/AI.gd"
 var rocket = preload("res://scenes/rocket.tscn")
 
 func aiming(delta : float):
+	if not is_instance_valid(target):
+		state=SEARCHING
+		return
 	look_at(Vector3(target.position.x,0,target.position.z))
 	attack()
 	state=SHOOTING

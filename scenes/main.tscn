@@ -1,14 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtuyypt0e3o3w"]
+[gd_scene load_steps=15 format=3 uid="uid://dtuyypt0e3o3w"]
 
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="1_qlexn"]
 [ext_resource type="PackedScene" uid="uid://b1ega158uiio7" path="res://scenes/UFO.tscn" id="3_nga5r"]
 [ext_resource type="Texture2D" uid="uid://dgrbl430f5x0s" path="res://icon.svg" id="4_iagxj"]
 [ext_resource type="Script" path="res://scripts/Manager.gd" id="5_wiuob"]
-[ext_resource type="PackedScene" uid="uid://c7aisn4xfio4h" path="res://scenes/solider.tscn" id="8_3d31l"]
-[ext_resource type="PackedScene" uid="uid://sgvo875warf7" path="res://scenes/en_ufo.tscn" id="9_1oxt0"]
 [ext_resource type="PackedScene" uid="uid://33f4kuhiv4mw" path="res://scenes/finishingPoint.tscn" id="9_j6pp2"]
-[ext_resource type="PackedScene" uid="uid://cvirbn208av86" path="res://scenes/tank.tscn" id="9_t2eh2"]
-[ext_resource type="PackedScene" uid="uid://r6ro4k3nw8de" path="res://scenes/helicopter.tscn" id="10_golsp"]
 [ext_resource type="PackedScene" uid="uid://gliw0bw1isl8" path="res://scenes/barrier.tscn" id="11_fv8ew"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_oc4nb"]
@@ -43,23 +39,24 @@ gridWidth = 400
 gridHeight = 400
 
 [node name="Enj" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8971, 0, 13.8372)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.642, 0, 50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enj"]
 mesh = SubResource("SphereMesh_oc4nb")
 
 [node name="j" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="j"]
 mesh = SubResource("SphereMesh_oc4nb")
 
 [node name="UFO" parent="." instance=ExtResource("3_nga5r")]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 45.7061, 3, 18.8007)
-speed = 5.0
+speed = 15.0
 
 [node name="Camera3D" type="Camera3D" parent="UFO"]
 transform = Transform3D(-0.0471064, -0.453486, 0.890017, 0, 0.891006, 0.45399, -0.99889, 0.0213858, -0.0419721, 1, 1, 0)
+current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u4r58")
@@ -123,7 +120,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="barriers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4346, 1.23179, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4346, 1.23179, 19.7923)
 
 [node name="barrier" parent="barriers" instance=ExtResource("11_fv8ew")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 43.5801, 0, 20.8494)
@@ -173,25 +170,9 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.11805, 0, 23.2666)
 [node name="barrier5" parent="barriers" instance=ExtResource("11_fv8ew")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13.8557, 0, 23.2666)
 
-[node name="En_UFO" parent="." instance=ExtResource("9_1oxt0")]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.228, 3, 42.907)
-radius = 4.0
-speed = 5.0
-
-[node name="Solider" parent="." instance=ExtResource("8_3d31l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6813, 0, 32.485)
-
-[node name="Solider3" parent="." instance=ExtResource("8_3d31l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6811, 0, 35.4852)
-
-[node name="Solider2" parent="." instance=ExtResource("8_3d31l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6811, 0, 32.4852)
-
-[node name="tank" parent="." instance=ExtResource("9_t2eh2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0901, 0, 7.61317)
-
-[node name="helicopter" parent="." instance=ExtResource("10_golsp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.09, 3, 20.123)
+[node name="unitsCreator" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [connection signal="timeout" from="UFO_EN" to="." method="_on_ufo_en_timeout"]
+[connection signal="timeout" from="unitsCreator" to="." method="_on_units_creator_timeout"]

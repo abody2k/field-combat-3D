@@ -27,10 +27,10 @@ func _physics_process(delta):
 			queue_free()
 		else:
 			if result.team == myTeam:
-				print("friendly fire")
+#				print("friendly fire")
 				queue_free()
 				return
-				
+			print(result.name)
 			get_parent().call("unitDestroyed",result.name,result.team)
 			if result.name.find("En_UFO")>=0: #check if it has absorbed enemy if so unfreeze them
 				result.call("unSuck")
