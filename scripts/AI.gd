@@ -13,8 +13,8 @@ var path : PackedVector2Array
 var state = 0
 var finishedAiming : bool = false
 var freezed = false
-var numOfUnits : int=0
-@export var maximumNumOfUnits: int =10
+
+
 ## a function that makes the unit goes to the winner new side
 func disable_me():
 	if has_node("enemeyDetector"):

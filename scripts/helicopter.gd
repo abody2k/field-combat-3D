@@ -10,7 +10,8 @@ var fliper =0
 const rocket = preload("res://scenes/rocket.tscn")
 ##moves toward an object
 
-
+func _ready():
+	$AnimationPlayer.play("flying")
 func makeMeRed():
 	(($Cube as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
 	(($Cube/Cube_002 as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
@@ -19,20 +20,22 @@ func moveInto(delta : float ):
 
 	look_at(Vector3(target.position.x,3,target.position.z))
 	if switched:
-		if position.distance_squared_to(target.position+ Vector3(DIAGNOAL,0,DIAGNOAL)) < 1 :
+		print((position.distance_squared_to(target.position+ Vector3(DIAGNOAL,0,DIAGNOAL))))
+		if position.distance_squared_to(target.position+ Vector3(DIAGNOAL,0,DIAGNOAL)) < 1100 :
 			attack()
 			switched=false
 			fliper+=1
-		velocity = (target.position+ Vector3(DIAGNOAL,0,DIAGNOAL)) - position
 
+		velocity = (target.position+ Vector3(DIAGNOAL,0,DIAGNOAL)) - position
 		move_and_slide()
 	else:
-
-		if position.distance_squared_to(target.position+ Vector3(-DIAGNOAL,0,-DIAGNOAL)) < 1:
+		print( position.distance_squared_to(target.position+ Vector3(-DIAGNOAL,0,-DIAGNOAL)))
+		if position.distance_squared_to(target.position+ Vector3(-DIAGNOAL,0,-DIAGNOAL)) < 1100:
 			attack()
 			switched=true
 			fliper+=1
 		velocity = (target.position+ Vector3(-DIAGNOAL,0,-DIAGNOAL)) - position
+
 		move_and_slide()
 	
 	pass
@@ -40,14 +43,14 @@ func flyAround(delta : float):
 	if not is_instance_valid(target):
 		state= SEARCHING
 		return
-	moveInto(delta)
-	return
+
+
 	
 	if target.position.y >=3 and fliper <3:
 		moveInto(delta)
 		return
 	
-	look_at(Vector3(target.position.x,3,target.position.z))		
+	look_at(Vector3(target.position.x,position.y,target.position.z))		
 
 	counter += delta
 	position+= Vector3(cos(((counter))),0,sin((counter))) * radius * delta
@@ -69,6 +72,7 @@ func move(delta : float=0):
 	pass
 
 func attack():
+	print('attacking as a helicopter')
 	#create rocket
 	#make it go to the target
 	#restart the timer
@@ -79,7 +83,7 @@ func attack():
 	myRocket.position = $aim.global_position 
 	myRocket.target = target.position
 	myRocket.myTeam = team
-	myRocket.rocketSpeed = 10
+	myRocket.rocketSpeed = 90
 	
 	get_parent().add_child(myRocket)
 	myRocket.look_at(target.position)
