@@ -7,13 +7,14 @@ func aiming(delta : float):
 	if not is_instance_valid(target):
 		state=SEARCHING
 		return
+	
 	look_at(Vector3(target.position.x,0,target.position.z))
 	attack()
 	state=SHOOTING
 	
 func makeMeRed():
 	(($Armature_001/Skeleton3D/Cube as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
-
+	(($Armature_001/Skeleton3D/cannon as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
 	
 	pass
 func move(delta : float =0):
@@ -54,7 +55,7 @@ func onShooting():
 	pass
 
 func attack():
-
+	$AnimationPlayer.play("attacking")
 		
 		
 #	if name.find("En")>=0 :
@@ -77,7 +78,7 @@ func attack():
 		
 		var myRocket = rocket.instantiate()
 
-		myRocket.position = $rocketAimingPoint.global_position + Vector3(3,3,3)
+		myRocket.position = $Armature_001/Skeleton3D/cannon/Node3D.global_position
 		myRocket.target = target.position
 		myRocket.myTeam = team
 		
@@ -91,6 +92,7 @@ func attack():
 		$shootingTimer.start()
 	else :
 		state= SEARCHING
+		$AnimationPlayer.play("running")
 		
 	pass # Replace with function body.
 	
