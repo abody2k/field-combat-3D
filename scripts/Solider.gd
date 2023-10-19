@@ -2,15 +2,20 @@ extends "res://scripts/AI.gd"
 
 
 var rocket = preload("res://scenes/rocket.tscn")
-
+func _ready():
+	$AnimationPlayer.play("running")
+	pass
+	
+var reloaded=true	
 func aiming(delta : float):
 	if not is_instance_valid(target):
 		state=SEARCHING
 		return
-	
-	look_at(Vector3(target.position.x,0,target.position.z))
+	$AnimationPlayer.play("attacking")
+	look_at(Vector3(target.position.x,position.y,target.position.z),Vector3.UP,true)
+#	state=SHOOTING
 	attack()
-	state=SHOOTING
+	
 	
 func makeMeRed():
 	(($Armature_001/Skeleton3D/Cube as MeshInstance3D).mesh.surface_get_material(0) as Material).albedo_color = Color.RED
@@ -21,40 +26,46 @@ func move(delta : float =0):
 
 	if state == DISABLED or freezed:
 		return
-		
+	look_at(Vector3(path[0].x* get_parent().gridRectSize.x,position.y,path[0].y* get_parent().gridRectSize.y),Vector3.UP,true)	
 	velocity =( Vector3(path[0].x* get_parent().gridRectSize.x,0,path[0].y* get_parent().gridRectSize.y)-position).normalized() * speed
 	move_and_slide()
+	
 		
 #checks if there is a player or not,if there is and in range it attacks if not it moves
 #towards it and if there is no player it looks for the final point to go to
 
 	
 	
-func onShooting():
-	if state== DISABLED :
-		return
-		
-	if !target:
-		state= SEARCHING
-		return
-		
-	if  target.position.distance_to(position)> shootingRange :
-		state = SEARCHING
-		return
-		
+#func onShooting():
+#	if state== DISABLED :
+#		return
+#
+#	if !target:
+#		state= SEARCHING
+#		return
+#
+#	if  target.position.distance_to(position)> shootingRange :
+#		state = SEARCHING
+#		return
+#
+#
+#
+#	pass
+#
+
+
+
+
 
 	
-	pass
-
-
-
-
-
-
-	
-	pass
+#	pass
 
 func attack():
+	if not reloaded :
+		return
+	state= SHOOTING
+		
+	print("attacking")
 	$AnimationPlayer.play("attacking")
 		
 		
@@ -63,7 +74,8 @@ func attack():
 #	else:
 #		print("Shooting as mini AI")
 #
-
+	
+		
 	if !is_instance_valid(target):
 		state=SEARCHING
 		return
@@ -86,20 +98,23 @@ func attack():
 		myRocket.look_at(target.position)
 #		print(target)
 #		(myRocket as CharacterBody3D).look_at(target.position)
-		
-		pass
-	if target.position.distance_to(position) <= shootingRange:
+		reloaded=false
 		$shootingTimer.start()
-	else :
 		state= SEARCHING
-		$AnimationPlayer.play("running")
+#		pass
+#	if target.position.distance_to(position) <= shootingRange:
+#		$shootingTimer.start()
+#	else :
+#		state= SEARCHING
+#		$AnimationPlayer.play("running")
 		
 	pass # Replace with function body.
 	
 	
 	pass
 func _on_shooting_timer_timeout():
-	state= SEARCHING
+	reloaded=true
+	
 
 
 func _ObjectEnteredDetectionRange(body):

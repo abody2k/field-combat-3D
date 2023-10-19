@@ -61,6 +61,35 @@ func _on_ufo_en_timeout():
 
 
 func generate_map():
+	
+	
+	for i in range(gridWidth):
+		for j in range(gridHeight):
+			if i == 0:
+				var barrier = block.instantiate()
+				barrier.position=Vector3(i+3,0,j+3)
+				add_child(barrier)
+				grid.set_point_solid(Vector2i(i,j))
+				pass
+			if  i == gridWidth-1 :
+				var barrier = block.instantiate()
+				barrier.position=Vector3(i+3,0,j+3)
+				add_child(barrier)
+				grid.set_point_solid(Vector2i(i,j))				
+				pass
+			if j == gridHeight-1:
+				var barrier = block.instantiate()
+				barrier.position=Vector3(i+3,0,j+3)
+				add_child(barrier)
+				grid.set_point_solid(Vector2i(i,j))				
+				pass
+			if j == 0 :
+				var barrier = block.instantiate()
+				barrier.position=Vector3(i+3,0,j+3)
+				add_child(barrier)
+				grid.set_point_solid(Vector2i(i,j))
+				pass
+		pass
 	for child in get_children() :
 		if child is StaticBody3D and child.name.find("barrier")>=0:
 			

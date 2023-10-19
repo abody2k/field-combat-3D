@@ -231,7 +231,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="emit" type="Node3D" parent="."]
-transform = Transform3D(-4.37117e-08, -1.19209e-07, -1, 0, 1, -1.19209e-07, 1, 1.08358e-13, -4.37112e-08, -3.54126, -0.592746, -2.75387e-06)
+transform = Transform3D(-4.37117e-08, -1.19209e-07, -1, 0, 1, -1.19209e-07, 1, 1.08358e-13, -4.37115e-08, -3.05049, -0.216107, -1.50968e-06)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.608793, 0, 0, 0, 0.608793, 0, 0, 0, 0.608793, 0, 0, 0)

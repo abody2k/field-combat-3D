@@ -29,7 +29,7 @@ func _physics_process(delta):
 			queue_free()
 		else:
 			if result.team == myTeam:
-#				print("friendly fire")
+				print("friendly fire")
 				queue_free()
 				return
 
