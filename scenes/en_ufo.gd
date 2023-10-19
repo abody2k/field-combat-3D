@@ -8,7 +8,13 @@ var counter : float =0.0
 var firing = false
 var absorbing =false
 const rocket = preload("res://scenes/rocket.tscn")
+
+
+func _ready():
+	$AnimationPlayer.play("rotating")
+	pass
 func attack():
+	print("attacking")
 	
 	if not is_instance_valid(target):
 		return
@@ -94,7 +100,7 @@ func flyAround(delta : float):
 
 
 func move (delta : float=0):
-	velocity =( Vector3(target.position.x,position.y,target.position.z)- position )* speed
+	velocity =( Vector3(target.position.x,position.y,target.position.z)- position ).normalized()* speed
 	move_and_slide()
 	if not firing:
 		firing = true

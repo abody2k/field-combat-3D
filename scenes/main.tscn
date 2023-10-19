@@ -118,6 +118,7 @@ skeleton = NodePath("../../MeshInstance3D")
 
 [node name="UFO_EN" type="Timer" parent="."]
 wait_time = 10.0
+autostart = true
 
 [node name="barriers" type="Node3D" parent="."]
 process_mode = 4
